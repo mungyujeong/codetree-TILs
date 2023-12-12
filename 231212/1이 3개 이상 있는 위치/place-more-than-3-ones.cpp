@@ -20,14 +20,15 @@ int main() {
             arr[i][j] = a;
         }
     }
-    for (int x = 0; x < n; x ++) {
+
+    for (int x = 0; x < n; x++) {
         int count = {0};
         for (int y = 0; y < n; y++) {
             for (int d = 0; d < 4; d++ ) {
                 int nx = x + dx[d];
                 int ny = y + dy[d];
                 if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
-                if (arr[nx][ny] == 1) count++;
+                else if (arr[nx][ny] == 1) count++;
             }
         }
         if (count >= 3) {
