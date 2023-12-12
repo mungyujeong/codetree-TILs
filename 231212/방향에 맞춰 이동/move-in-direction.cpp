@@ -1,34 +1,33 @@
 #include <iostream>
 
+#define DIR_NUM 4
+
 using namespace std;
 
-int main() {
-    int x = 0;
-    int y = 0;
+int n, x, y;
 
-    int dx[4] = {0, -1, 1, 0};
-    int dy[4] = {-1, 0, 0, 1};
-    int n;
+int dx[DIR_NUM] = {1, -1, 0, 0};
+int dy[DIR_NUM] = {0, 0, -1, 1};
+
+int main() {
     cin >> n;
-    for (int i = 0; i < n; i++) {
-        char d;
-        int distance;
-        cin >> d >> distance;
-        if (d == 'W') {
-            x += dx[0] * distance;
-            y += dy[0] * distance;
-        } else if (d == 'S') {
-            x += dx[1] * distance;
-            y += dy[1] * distance;
-        } else if (d == 'N') {
-            x += dx[2] * distance;
-            y += dy[2] * distance;
-        } else if (d == 'E') {
-            x += dx[3] * distance;
-            y += dy[3] * distance;
-        }
+
+    while(n--) {
+        char c_dir; int dist;
+        cin >> c_dir >> dist;
+
+        int dir;
+        if(c_dir == 'E') dir = 0;
+        else if(c_dir == 'W') dir = 1;
+        else if(c_dir == 'S') dir = 2;
+        else dir = 3;
+        
+        x += dx[dir] * dist;
+        y += dy[dir] * dist;
+
+
     }
 
-    cout << y << " " << x << endl;
+    cout << x << " " << y;
     return 0;
 }
