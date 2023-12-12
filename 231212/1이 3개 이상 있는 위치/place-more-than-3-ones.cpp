@@ -22,18 +22,20 @@ int main() {
     }
 
     for (int x = 0; x < n; x++) {
-        int count = {0};
+        
         for (int y = 0; y < n; y++) {
+            int count = {0};
             for (int d = 0; d < 4; d++ ) {
                 int nx = x + dx[d];
                 int ny = y + dy[d];
                 if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
                 else if (arr[nx][ny] == 1) count++;
             }
-        }
-        if (count >= 3) {
+            if (count >= 3) {
             answer++;
         }
+        }
+        
     }
     cout << answer;
 
