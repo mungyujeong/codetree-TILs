@@ -31,19 +31,12 @@ bool IsRange(int tx, int ty) {
     return 0 <= tx && tx < n && 0 <= ty && ty < n;
 }
 
-int ChangeDir(int d) {
+void ChangeDir() {
     if (arr[x][y] == '\\') {
-        if (d == 0) d = 3;
-        else if (d == 1) d = 2;
-        else if (d == 2) d = 1;
-        else d = 0;
+        dir = 3 - dir;
     } else {
-        if (d == 0) d = 1;
-        else if (d == 1) d = 0;
-        else if (d == 2) d = 3;
-        else d = 2;
+        dir ^= 1;
     }
-    return d;
 }
 
 int main() {
@@ -57,7 +50,7 @@ int main() {
     GetPositionAndDir();
 
     while (IsRange(x, y)) {
-        dir = ChangeDir(dir);
+        ChangeDir();
         answer++;
         x += dx[dir];
         y += dy[dir];
