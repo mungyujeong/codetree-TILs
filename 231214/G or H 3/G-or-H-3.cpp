@@ -24,15 +24,7 @@ int main() {
         int sum = 0;
         for (int j = i; j <= i + k; j++) 
             sum += position[j];
-        if(sum == 72) {
-            cout << i << endl;
-
-            for (int j = i; j <= i + k; j++) {
-                cout << j << " ";
-                cout <<position[j] << " ";
-            }
-            cout << endl;
-        }
+        
         max_score = max(max_score, sum);
     }
 
