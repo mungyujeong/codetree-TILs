@@ -22,7 +22,6 @@ int main() {
     }
 
     int max_score = INT_MIN;
-    if (k > max_x) k = max_x;
     for (int i = 1; i <= max_x - k; i++) {
         int sum = 0;
         for (int j = i; j < i + k + 1; j++) {
