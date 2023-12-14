@@ -1,7 +1,7 @@
 #include <iostream>
 #include <climits>
 
-#define MAX_P 10000
+#define MAX_P 10001
 
 using namespace std;
 
