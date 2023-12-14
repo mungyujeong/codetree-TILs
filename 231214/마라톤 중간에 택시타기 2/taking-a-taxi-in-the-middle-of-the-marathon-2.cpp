@@ -6,7 +6,7 @@ using namespace std;
 #define MAX_N 100
 
 int n, curr_x, curr_y;
-int max_dist = INT_MIN;
+int min_dist = INT_MAX;
 pair<int, int> arr[MAX_N];
 
 int GetDist(int sx, int sy, int dx, int dy) {
@@ -22,9 +22,12 @@ int main() {
         // cout << arr[i].first << arr[i].second << endl;
     }
 
-    curr_x = arr[0].first; curr_y = arr[0].second;
+    
+
     for (int i = 1; i < n; i++) {
         int dist = 0;
+        curr_x = arr[0].first; 
+        curr_y = arr[0].second;
         for (int j = 1; j < n; j++) {
             if (i == j) {
                 continue;
@@ -34,8 +37,8 @@ int main() {
                 curr_y = arr[j].second;
             }
         }
-        max_dist = max(max_dist, dist);
+        min_dist = min(min_dist, dist);
     }
-    cout << max_dist;
+    cout << min_dist;
     return 0;
 }
