@@ -16,8 +16,8 @@ int main() {
         max_x = max(max_x, index);
     }
 
-    if (n <= k) {
-        int sum;
+    if (100 <= k) {
+        int sum = 0;
         for (int i = 1; i <= max_x; i++) {
             sum += basket[i];
         }
