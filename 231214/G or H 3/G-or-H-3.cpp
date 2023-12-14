@@ -18,11 +18,10 @@ int main() {
         } else if (word == 'H'){
             position[num] = 2;
         }
-        max_x = max(max_x, num);
     }
 
     int max_score = INT_MIN;
-    for (int i = 1; i <= max_x - k; i++) {
+    for (int i = 1; i <= MAX_P - k; i++) {
         int sum = 0;
         for (int j = i; j < i + k + 1; j++) {
             if(position[j] > 0) {
