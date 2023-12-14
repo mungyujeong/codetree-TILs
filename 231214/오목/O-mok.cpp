@@ -30,7 +30,6 @@ int main() {
             value = arr[i][j];
             
             if (value) {
-
                 // 직선
                 for (int d = 0; d < 4; d++) {
                     int x = i; int y = j;
@@ -82,7 +81,9 @@ int main() {
     }
 
     cout << value << endl;
-    cout << cx << " " << cy;
+    if (value) {
+        cout << cx << " " << cy;
+    }
 
     return 0;
 }
