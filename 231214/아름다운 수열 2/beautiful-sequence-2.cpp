@@ -23,20 +23,16 @@ int main() {
     
     
     for (int i = 0; i <= n - m; i++) {
-        int visited[MAX_N] = {0, };
+        bool visited[MAX_N] = {false, };
         count = 0;
         for (int j = i; j < i + m; j++) {
             for (int k = 0; k < m; k++) {
-                if (a[j] == b[k] && visited[k] == 0) {
-                    visited[k] = 1;
+                if (a[j] == b[k] && visited[k] == false) {
+                    visited[k] = true;
                     count++;
+                    break;
                 }
             }
-            // cout << "j: " << j << " count: " << count << endl;
-            // for (int k = 0; k < m; k++) {
-            //     cout << visited[k] << " ";
-            // }
-            // cout << endl;
         }
         if (count == m) answer++;
     }
