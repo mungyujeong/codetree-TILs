@@ -18,7 +18,7 @@ int main() {
 
     if (n <= k) {
         int sum;
-        for (int i = 1; i <= MAX_N; i++) {
+        for (int i = 1; i <= max_x; i++) {
             sum += basket[i];
         }
         cout << sum;
