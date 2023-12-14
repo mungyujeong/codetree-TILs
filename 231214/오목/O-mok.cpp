@@ -55,7 +55,7 @@ int main() {
                 // 대각선   
                 for (int d = 0; d < 4; d++) {
                     int count = 0;
-                    int x = 0; int y = 0;
+                    int x = i; int y = j;
                     for (int k = 0; k < 4; k++) {
                         nx = x + cdx[d];
                         ny = y + cdy[d];
@@ -67,8 +67,8 @@ int main() {
 
                     if (count == 4) {
                         isWin = true;
-                        cx = i + dx[d] * 2 + 1;
-                        cy = j + dy[d] * 2 + 1;
+                        cx = i + cdx[d] * 2 + 1;
+                        cy = j + cdy[d] * 2 + 1;
                         break;
                     }
                 }
