@@ -16,7 +16,7 @@ int main() {
     for (int i = 0; i <= n - t; i++) {
         int sum = 0;
         for (int j = i; j < i + t; j++) {
-            sum += abs(t - arr[j] + 1);
+            sum += abs(h - arr[j]);
         }
         min_sum = min(min_sum, sum);
     }
