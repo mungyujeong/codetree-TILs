@@ -16,7 +16,7 @@ int main() {
         max_x = max(max_x, index);
     }
 
-    if (100 <= k) {
+    if (max_x <= k) {
         int sum = 0;
         for (int i = 1; i <= max_x; i++) {
             sum += basket[i];
@@ -29,6 +29,7 @@ int main() {
     for (int c = k + 1; c <= max_x; c++) {
         int sum = 0;
         for (int j = c - k; j <= c + k; j++) {
+            if (j > 100) break;
             sum += basket[j];
         }
         max_sum = max(max_sum, sum);
