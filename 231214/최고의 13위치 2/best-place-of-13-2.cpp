@@ -15,12 +15,29 @@ int main() {
         for (int j = 0; j < n; j++)
             cin >> grid[i][j];
     
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < n - 2; j++) {
-            for (int k = i + 1; k < n; k++) {
-                for (int l = 0; l < n - 2; l++) {
+            // for (int k = i; k < n; k++) {
+            //     if (j + 3 < n) {
+            //         for (int l = j + 3; l < n - 2; l++) {
+            //         max_sum = max(max_sum, grid[i][j] + grid[i][j + 1] + grid[i][j + 2] +
+            //                                 grid[k][l] + grid[k][l + 1] + grid[k][l + 2]);
+            //         }
+            //     }
+            // }
+            if (j + 3 >= n) {
+                for (int k = i + 1; k < n; k++) {
+                    for (int l = 0; l < n - 2; l++) {
                     max_sum = max(max_sum, grid[i][j] + grid[i][j + 1] + grid[i][j + 2] +
                                             grid[k][l] + grid[k][l + 1] + grid[k][l + 2]);
+                    }
+                }
+            } else {
+                for (int k = i; k < n; k++) {
+                    for (int l = j + 3; l < n - 2; l++) {
+                    max_sum = max(max_sum, grid[i][j] + grid[i][j + 1] + grid[i][j + 2] +
+                                            grid[k][l] + grid[k][l + 1] + grid[k][l + 2]);
+                    }
                 }
             }
         }
