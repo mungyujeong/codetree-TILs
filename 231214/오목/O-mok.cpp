@@ -28,10 +28,12 @@ int main() {
     for (int i = 0; i < MAX_N; i++) {
         for (int j = 0; j < MAX_N; j++) {
             value = arr[i][j];
-            int x = i; int y = j;
+            
             if (value) {
+
                 // 직선
                 for (int d = 0; d < 4; d++) {
+                    int x = i; int y = j;
                     int count = 0;
                     for (int k = 0; k < 4; k++) {
                         nx = x + dx[d];
@@ -54,8 +56,8 @@ int main() {
 
                 // 대각선   
                 for (int d = 0; d < 4; d++) {
-                    int count = 0;
                     int x = i; int y = j;
+                    int count = 0;
                     for (int k = 0; k < 4; k++) {
                         nx = x + cdx[d];
                         ny = y + cdy[d];
