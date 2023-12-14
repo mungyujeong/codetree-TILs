@@ -25,9 +25,9 @@ int main() {
 
     int max_score = INT_MIN;
     
-    for (int i = 1; i <= max_x - k; i++) {
+    for (int i = 1; i <= max_x - k + 1; i++) {
         int sum = 0;
-        for (int j = i; j < i + k + 1 ; j++) {
+        for (int j = i; j <= i + k; j++) {
             sum += position[j];
         }
         max_score = max(max_score, sum);
