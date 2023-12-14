@@ -1,13 +1,12 @@
 #include <iostream>
-#include <climits>
 
-#define MAX_P 10001
+#define MAX_P 10000
 
 using namespace std;
 
-int n, k, num, max_x;
+int n, k, num;
 char word;
-int position[MAX_P];
+int position[MAX_P + 1];
 
 int main() {
     cin >> n >> k;
@@ -20,13 +19,19 @@ int main() {
         }
     }
 
-    int max_score = INT_MIN;
-    for (int i = 1; i <= MAX_P - k; i++) {
+    int max_score = 0;
+    for (int i = 0; i <= MAX_P - k; i++) {
         int sum = 0;
-        for (int j = i; j < i + k + 1; j++) {
-            if(position[j] > 0) {
-                sum += position[j];
+        for (int j = i; j <= i + k; j++) 
+            sum += position[j];
+        if(sum == 72) {
+            cout << i << endl;
+
+            for (int j = i; j <= i + k; j++) {
+                cout << j << " ";
+                cout <<position[j] << " ";
             }
+            cout << endl;
         }
         max_score = max(max_score, sum);
     }
