@@ -16,9 +16,8 @@ int main() {
     for (int i = 0; i <= n - t; i++) {
         int sum = 0;
         for (int j = i; j < i + t; j++) {
-            sum += abs(t - arr[j]);
+            sum += abs(t - arr[j] + 1);
         }
-        cout << endl;
         min_sum = min(min_sum, sum);
     }
     cout << min_sum;
