@@ -10,18 +10,27 @@ int n;
 int answer = -1;
 string arr[MAX_N];
 
+int IsMinus(int c) {
+    if (c < 0) return 0;
+    else return c;
+}
+
 bool IsCarry(string s1, string s2, string s3) {
-    int len = INT_MAX;
-    len = min(len, (int)s1.size());
-    len = min(len, (int)s2.size());
-    len = min(len, (int)s3.size());
+    int len = INT_MIN;
+    len = max(len, (int)s1.size());
+    len = max(len, (int)s2.size());
+    len = max(len, (int)s3.size());
     
     for (int i = 0; i < len; i++) {
-        if ((s1[s1.size() - i - 1] - '0') + (s2[s2.size() - i -1] - '0') + (s3[s3.size() - i - 1] - '0') >= 10)
+
+        if (IsMinus(s1[s1.size() - i - 1] - '0') + 
+            IsMinus(s2[s2.size() - i - 1] - '0') + 
+            IsMinus(s3[s3.size() - i - 1] - '0') >= 10)
             return true;
     }
     return false;
 }
+
 
 int main() {
     cin >> n;
