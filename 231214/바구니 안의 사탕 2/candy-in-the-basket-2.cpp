@@ -10,15 +10,15 @@ int basket[MAX_N + 1] = {0, };
 int main() {
     cin >> n >> k;
     for (int i = 0; i < n; i++) {
-        int index, num;
-        cin >> num >> index;
-        basket[index] = num;
+        int index, candy;
+        cin >> candy >> index;
+        basket[index] = candy;
         max_x = max(max_x, index);
     }
 
     if (n <= k) {
         int sum;
-        for (int i = 0; i < MAX_N; i++) {
+        for (int i = 1; i <= MAX_N; i++) {
             sum += basket[i];
         }
         cout << sum;
