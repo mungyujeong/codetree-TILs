@@ -6,6 +6,22 @@ using namespace std;
 
 int n, m, answer;
 int grid[MAX_NUM][MAX_NUM];
+int seq[MAX_NUM];
+
+bool isHappySequence() {
+    int count = 1;
+    int max_cnt = 1;
+    for (int i = 0; i < n - 1; i++) {
+        if (seq[i] == seq[i + 1]) count++;
+        else {
+            count = 1;
+        }
+
+        max_cnt = max(max_cnt, count);
+    }
+
+    return max_cnt >= m;
+}
 
 int main() {
     cin >> n >> m;
@@ -14,34 +30,21 @@ int main() {
             cin >> grid[i][j];
     
     for (int row = 0; row < n; row++) {
-        int count = 0;
-        int first = grid[row][0];
         for (int col = 0; col < n; col++) {
-            if (first == grid[row][col]) count++;
-            else if (count >= m) break;
-            else {
-                first = grid[row][col];
-                // cout << row << " " << col << endl;
-                count = 1;
-            }
+            seq[col] = grid[row][col];
         }
-        if (count >= m) answer++;
+
+        if (isHappySequence())
+            answer++;
     }
 
     for (int col = 0; col < n; col++) {
-        int count = 0;
-        int first = grid[0][col];
         for (int row = 0; row < n; row++) {
-            if (first == grid[row][col]) count++;
-            else if (count >= m) break;
-            else {
-                
-                first = grid[row][col];
-                // cout << row << " " << col << endl;
-                count = 1;
-            }
+            seq[row] = grid[row][col];
         }
-        if (count >= m) answer++;
+
+        if (isHappySequence())
+            answer++;
     }
 
     cout << answer;
