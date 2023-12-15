@@ -16,7 +16,7 @@ int GetGold(int x, int y, int klimit) {
     int count = 0;
     if (klimit == 0) 
         return grid[x][y];
-        
+
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             if (abs(i - x) + abs(j - y) == klimit) {
@@ -25,7 +25,7 @@ int GetGold(int x, int y, int klimit) {
         }
     }
 
-    if (count * GetCost(klimit) > m) {
+    if (count * GetCost(klimit) >= m) {
         return count;
     }
     return 0;
