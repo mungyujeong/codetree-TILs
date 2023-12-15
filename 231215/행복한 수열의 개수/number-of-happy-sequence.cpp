@@ -18,6 +18,10 @@ int main() {
         int first = grid[row][0];
         for (int col = 0; col < n; col++) {
             if (first == grid[row][col]) count++;
+            else {
+                first = grid[row][col];
+                count = 1;
+            }
         }
 
         if (count >= m) answer++;
@@ -28,6 +32,10 @@ int main() {
         int first = grid[0][col];
         for (int row = 0; row < n; row++) {
             if (first == grid[row][col]) count++;
+            else {
+                first = grid[row][col];
+                count = 1;
+            }
         }
 
         if (count >= m) answer++;
