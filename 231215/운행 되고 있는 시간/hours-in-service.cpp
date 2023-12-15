@@ -15,7 +15,7 @@ int main() {
     
     for (int i = 0; i < n; i++) {
         int sum = 0;
-        bool visited[MAX_N] = {true, };
+        bool visited[1001] = {true, };
         for (int j = 0; j < n; j++) {
             if (i == j) continue;
             for (int t = a[j]; t < b[j]; t++) {
