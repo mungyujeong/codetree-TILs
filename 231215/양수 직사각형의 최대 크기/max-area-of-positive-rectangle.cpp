@@ -12,7 +12,7 @@ int GetSum(int x1, int y1, int x2, int y2) {
     int sum = 0;
     for (int i = x1; i <= x2; i++) {
         for (int j = y1; j <= y2; j++) {
-            if (grid[i][j] < 0) return -1;
+            if (grid[i][j] <= 0) return -1;
         }
     }
 
