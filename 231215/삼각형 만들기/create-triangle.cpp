@@ -1,10 +1,11 @@
 #include <iostream>
+#include <climits>
 
 #define MAX_N 100
 
 using namespace std;
 
-int n, answer;
+int n, answer = INT_MIN;
 int x[MAX_N];
 int y[MAX_N];
 
@@ -20,7 +21,7 @@ int IsValid(int i, int j, int k) {
 }
 
 int GetValue(int i, int j, int k) {
-    return 0.5 * abs((x[i] * y[j] + x[j] * y[k] + x[k] * y[i]) - (x[j] * y[i] + x[k] * y[j] + x[i] * y[k]));
+    return abs((x[i] * y[j] + x[j] * y[k] + x[k] * y[i]) - (x[j] * y[i] + x[k] * y[j] + x[i] * y[k]));
 }
 
 int main() {
@@ -37,6 +38,6 @@ int main() {
             }
         }
     }
-    cout << answer * 2;
+    cout << answer;
     return 0;
 }
