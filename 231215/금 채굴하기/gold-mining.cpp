@@ -19,7 +19,7 @@ int GetGold(int x, int y, int klimit) {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            if (abs(i - x) + abs(j - y) == klimit) {
+            if (abs(i - x) + abs(j - y) <= klimit) {
                 count += grid[i][j];
             }
         }
