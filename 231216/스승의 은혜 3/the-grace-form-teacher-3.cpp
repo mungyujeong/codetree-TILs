@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #define MAX_N 1000
 
@@ -19,8 +20,10 @@ int main() {
 
         int count = 0;
         int sum = price[i] / 2 + send[i];
+
         if (sum > b) continue;
         else count++;
+
         v.clear();
 
         for (int j = 0; j < n; j++) {
@@ -28,6 +31,7 @@ int main() {
 
             v.push_back(price[j] + send[j]);
         }
+        sort(v.begin(), v.end());
 
         for (auto i : v) {
             // cout << i << " ";
