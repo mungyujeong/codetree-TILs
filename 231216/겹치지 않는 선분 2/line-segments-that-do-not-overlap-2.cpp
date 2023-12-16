@@ -50,7 +50,7 @@ int main() {
             } else if ((sx2 - sx1 > 0) && (fx2 - fx1 < 0)){
                 if (((sx1 < fx2 && fx2 < sx2) && (fx2 < sx2 && sx2 < fx1)) ||
                     ((sx1 < fx2 && fx2 < sx2) && (sx1 < fx1 && fx1 < sx2)) ||
-                    ((fx2 < sx1 && sx1 < fx2) && (fx2 < sx2 && sx2 < fx1)) ||
+                    ((fx2 < sx1 && sx1 < fx1) && (fx2 < sx2 && sx2 < fx1)) ||
                     ((fx2 < sx1 && sx1 < fx1) && (sx1 < fx1 && fx1 < sx2))) {
                         crossed[i] = 1;
                         crossed[j] = 1;
