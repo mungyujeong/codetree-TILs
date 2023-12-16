@@ -7,17 +7,15 @@ using namespace std;
 int n, m, d, s;
 int dArr[MAX_N][3];
 int sArr[MAX_N][2];
-int cheeze[MAX_N];
+int cheeze[MAX_N] = {0, };
+int candidate[MAX_N] = {0, };
 
-int main() {
-    cin >> n >> m >> d >> s;
-    for (int i = 0; i < d; i++) 
-        cin >> dArr[i][0] >> dArr[i][1] >> dArr[i][2];
-    for (int i = 0; i < s; i++)
-        cin >> sArr[i][0] >> sArr[i][1];
-    
+
+// 아픈 사람들 중 dm을 먹은 사람들을 찾고
+// 먹었던 시간이 st보다 작으면 true
+int findWhoEat() {
     for (int i = 0; i < s; i++) {
-        // cout << sArr[i][0] << " " << sArr[i][1] << endl;
+        // 환자 선택
         int sp = sArr[i][0]; 
         int st = sArr[i][1];
 
@@ -30,24 +28,31 @@ int main() {
             if (sp != dp) continue;
             
             // 먹었던 시간이 아팠던 시간 전이라면
-            if (dt <= st) {
-                // dm을 먹은 사람들 찾기
-                for (int k = 0; k < d; k++) {
-                    if (dArr[k][1] == dm) {
-                        cheeze[dArr[k][0]] = 1;
-                    }
+            if (dt < st) {
+                if (candidate[dm] == 1) {
+                    return dm;
                 }
+                candidate[dm] = 1;
             }
         }
     }
+}
 
+int main() {
+    cin >> n >> m >> d >> s;
+    for (int i = 0; i < d; i++) 
+        cin >> dArr[i][0] >> dArr[i][1] >> dArr[i][2];
+    for (int i = 0; i < s; i++)
+        cin >> sArr[i][0] >> sArr[i][1];
+
+    int apple = findWhoEat();
+    // cout << apple << endl;
     int answer = 0;
-    for (int i = 1; i <= n; i++) {
-        // cout << cheeze[i] << " ";
-        if (cheeze[i] == 1) 
+    for (int i = 0; i < d; i++) {
+        int dm = dArr[i][1];
+        if (dm == apple)
             answer++;
     }
-    // cout << endl;
     cout << answer;
     return 0;
 }
