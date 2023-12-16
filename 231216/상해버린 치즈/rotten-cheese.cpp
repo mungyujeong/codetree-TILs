@@ -47,12 +47,18 @@ int main() {
 
     int apple = findWhoEat();
     // cout << apple << endl;
+
     int answer = 0;
+    int p[MAX_N] = {0, };
     for (int i = 0; i < d; i++) {
+        int dp = dArr[i][0];
         int dm = dArr[i][1];
-        if (dm == apple)
-            answer++;
+        if (dm == apple) {
+            p[dp] = 1;
+        }
     }
+    for (int i = 0; i < MAX_N; i++)
+        answer += p[i];
     cout << answer;
     return 0;
 }
