@@ -23,9 +23,7 @@ int main() {
         int count = 0;
         for (int j = 0; j < n; j++) {
             // a[j] b[j] 변경
-            int tmp = score[a[j]];
-            score[a[j]] = score[b[j]];
-            score[b[j]] = tmp;
+            swap(score[a[j]], score[b[j]]);
 
             // for (int t = 1; t <= 3; t++)
             //     cout << score[t] << " ";
