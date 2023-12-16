@@ -1,11 +1,12 @@
 #include <iostream>
 #include <climits>
+#include <algorithm>
 
 #define MAX_N 1000
 
 using namespace std;
 
-int n, b, sum = 0;
+int n, b;
 int price[MAX_N];
 int answer = INT_MIN;
 
@@ -13,22 +14,22 @@ int main() {
     cin >> n >> b;
     for (int i = 0; i < n; i++) {
         cin >> price[i];
-        sum += price[i];
     }
+    sort(price, price + n);
 
     for (int i = 0; i < n; i++) {
-        int count = price[i] / 2;
-        int num = 1;
+        int sum = price[i] / 2;
+        int count = 1;
         for (int j = 0; j < n; j++) {
             if(i == j) continue;
             
-            count += price[j];
-            num++;
-            if (count <= b)
-                answer = max(answer, num);
+            sum += price[j];
+            count++;
+            if (sum <= b)
+                answer = max(answer, count);
             else {
-                num--;
-                count -= price[j];
+                count--;
+                sum -= price[j];
             }
         }
     }
