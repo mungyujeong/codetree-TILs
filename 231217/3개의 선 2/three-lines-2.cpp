@@ -18,9 +18,10 @@ int main() {
             for (int k = 0; k <= 10; k++) {
                 
                 int arr[3] = {i, j, k};
-                int checked[MAX_N] = {0, };
+                
 
                 for (int l = 0; l <= 3; l++) {
+                    int checked[MAX_N] = {0, };
                     int x_time = l;
                     int y_time = 3 - l;
                     
