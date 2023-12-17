@@ -17,10 +17,9 @@ int main() {
         for (int j = 0; j < 3; j++) 
             grid[i][j] = int(input[i][j] - '0');
     
-    for (int i = 1; i <= 9; i++) {
-        for (int j = i; j <= 9; j++) {
+    for (int i = 1; i < 9; i++) {
+        for (int j = i + 1; j <= 9; j++) {
             // cout << i << " " << j << endl;
-            if (i == j) continue;
             
             // 가로
             bool hasTeam = false;
@@ -41,7 +40,6 @@ int main() {
             }
             
             if (hasTeam) continue;
-
             
             // 세로
             for (int l = 0; l < 3; l++) {
@@ -70,20 +68,6 @@ int main() {
             }
             if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
                 // cout << "대각선: " << i << " " << j << endl;
-                answer++;
-                hasTeam = true;
-                break;
-            }
-
-            // 대각선
-            i_cnt = 0;
-            j_cnt = 0;
-            for (int k = 0; k < 3; k++) {
-                if (grid[k][k] == i) i_cnt++;
-                else if (grid[k][k] == j) j_cnt++;
-            }
-            if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
-                // cout << "대각선1: " << i << " " << j << endl;
                 answer++;
                 hasTeam = true;
             }
