@@ -6,6 +6,8 @@ using namespace std;
 string input[3];
 int grid[3][3];
 int answer;
+int i_cnt = 0;
+int j_cnt = 0;
 
 int main() {
     for (int i = 0; i < 3; i++)
@@ -16,12 +18,12 @@ int main() {
             grid[i][j] = int(input[i][j] - '0');
     
     for (int i = 1; i <= 9; i++) {
-        for (int j = 1; j <= 9; j++) {
+        for (int j = i; j <= 9; j++) {
+            // cout << i << " " << j << endl;
             if (i == j) continue;
             
             // 가로
-            int i_cnt = 0;
-            int j_cnt = 0;
+            bool hasTeam = false;
             for (int k = 0; k < 3; k++) {    
                 i_cnt = 0;
                 j_cnt = 0;
@@ -29,13 +31,16 @@ int main() {
                     if (grid[k][l] == i) i_cnt++;
                     else if (grid[k][l] == j) j_cnt++;
                 }
-            }
-            if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
-                // cout << "가로: " << i << " " << j << endl;
-                answer++;
-                break;
-            }
 
+                if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
+                    // cout << "가로: " << i << " " << j << endl;
+                    answer++;
+                    hasTeam = true;
+                    break;
+                }
+            }
+            
+            if (hasTeam) continue;
 
             
             // 세로
@@ -46,12 +51,15 @@ int main() {
                     if (grid[k][l] == i) i_cnt++;
                     else if (grid[k][l] == j) j_cnt++;
                 }
+                if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
+                    // cout << "세로: " << i << " " << j << endl;
+                    answer++;
+                    hasTeam = true;
+                    break;
+                }
             }
-            if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
-                // cout << "세로: " << i << " " << j << endl;
-                answer++;
-                break;
-            }
+
+            if (hasTeam) continue;
 
             // 대각선
             i_cnt = 0;
@@ -63,7 +71,34 @@ int main() {
             if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
                 // cout << "대각선: " << i << " " << j << endl;
                 answer++;
+                hasTeam = true;
                 break;
+            }
+
+            // 대각선
+            i_cnt = 0;
+            j_cnt = 0;
+            for (int k = 0; k < 3; k++) {
+                if (grid[k][k] == i) i_cnt++;
+                else if (grid[k][k] == j) j_cnt++;
+            }
+            if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
+                // cout << "대각선1: " << i << " " << j << endl;
+                answer++;
+                hasTeam = true;
+            }
+
+            if (hasTeam) continue;
+
+            i_cnt = 0;
+            j_cnt = 0;
+            for (int k = 0; k < 3; k++) {
+                if (grid[k][2-k] == i) i_cnt++;
+                else if (grid[k][2-k] == j) j_cnt++;
+            }
+            if (i_cnt != 0 && j_cnt != 0 && i_cnt + j_cnt == 3) {
+                // cout << "대각선2: " << i << " " << j << endl;
+                answer++;
             }
         }
     }
