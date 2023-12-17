@@ -1,106 +1,97 @@
 #include <iostream>
-#include <climits>
+#include <algorithm>
 #include <vector>
+#include <tuple>
 
 #define MAX_N 20
+#define BOMB_TYPE_NUM 3
 
-using  namespace std;
+using namespace std;
 
-int n, answer = INT_MIN;
-int bomb_size;
-int count;
-int grid[MAX_N][MAX_N];
+int n;
+int bomb_type[MAX_N][MAX_N];
+bool bombed[MAX_N][MAX_N];
 
-vector<pair<int, int>> bomb;
+int ans;
+
+vector<pair<int, int> > bomb_pos;
 
 bool InRange(int x, int y) {
     return 0 <= x && x < n && 0 <= y && y < n;
 }
 
-void SelectSpace(int bomb_type, int x, int y) {
-    if (bomb_type == 0) {
-        int dx[4] = {1, 2, -1, -2};
-        int dy[4] = {0, 0, 0, 0};
-        for (int d = 0; d < 4; d++) {
-            int nx = x + dx[d];
-            int ny = y + dy[d];
-            if (InRange(nx, ny)) {
-                grid[nx][ny] = 1;
-            }
-        }
-    } else if (bomb_type == 1) {
-        int dx[4] = {1, -1, 0, 0};
-        int dy[4] = {0, 0, 1, -1};
-        for (int d = 0; d < 4; d++) {
-            int nx = x + dx[d];
-            int ny = y + dy[d];
-            if (InRange(nx, ny)) {
-                grid[nx][ny] = 1;
-            }
-        }
-    } else {
-        int dx[4] = {1, 1, -1, -1};
-        int dy[4] = {1, -1, 1, -1};
-        for (int d = 0; d < 4; d++) {
-            int nx = x + dx[d];
-            int ny = y + dy[d];
-            if (InRange(nx, ny)) {
-                grid[nx][ny] = 1;
-            }
-        }
+void Bomb(int x, int y, int b_type) {
+    // 폭탄 종류마다 터질 위치를 미리 정의합니다.
+    pair<int, int> bomb_shapes[BOMB_TYPE_NUM + 1][5] = {
+        {},
+        { {-2, 0}, {-1, 0}, {0, 0},  {1, 0}, {2, 0}},
+        { {-1, 0},  {1, 0}, {0, 0}, {0, -1}, {0, 1}},
+        {{-1, -1}, {-1, 1}, {0, 0}, {1, -1}, {1, 1}}
+    };
+    
+    // 격자 내 칸에 대해서만 영역을 표시합니다.
+    for(int i = 0; i < 5; i++) {
+        int dx, dy;
+        tie(dx, dy) = bomb_shapes[b_type][i];
+        
+        int nx = x + dx, ny = y + dy;
+        if(InRange(nx, ny))
+            bombed[nx][ny] = true;
     }
-    return;
 }
 
-int GetCount() {
-    int cnt = 0;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            if (grid[i][j] == 1)
+int Calc() {
+    // Step1. 폭탄이 터진 위치를 표시하는 배열을
+    // 초기화합니다.
+	for(int i = 0; i < n; i++)
+		for(int j = 0; j < n; j++)
+			bombed[i][j] = false;
+	
+    // Step2. 각 폭탄의 타입에 따라 
+    // 초토화 되는 영역을 표시합니다.
+	for(int i = 0; i < n; i++)
+		for(int j = 0; j < n; j++)
+            if(bomb_type[i][j])
+                Bomb(i, j, bomb_type[i][j]);
+	
+    // Step3. 초토화된 영역의 수를 구합니다.
+	int cnt = 0;
+	for(int i = 0; i < n; i++)
+		for(int j = 0; j < n; j++)
+            if(bombed[i][j])
                 cnt++;
-    return cnt;
+    
+	return cnt;
 }
 
-void GetSpace(int depth) {
-    if (depth == bomb_size) {
-        count = GetCount();
-        answer = max(answer, count);
-        return;
-    }
-
-    int bx = bomb[depth].first;
-    int by = bomb[depth].second;
-
-    for (int bomb_type = 0; bomb_type < 3; bomb_type++) {
-
-        // tmp <= grid copy
-        int tmp[MAX_N][MAX_N];
-        for (int i = 0; i < MAX_N; i++)
-            for (int j = 0; j < MAX_N; j++)
-                tmp[i][j] = grid[i][j];
-
-        SelectSpace(bomb_type, bx, by);
-        GetSpace(depth + 1);
-
-        // grid 원상복귀
-        for (int i = 0; i < MAX_N; i++)
-            for (int j = 0; j < MAX_N; j++)
-                grid[i][j] = tmp[i][j];
-    }
+void FindMaxArea(int cnt) {
+	if(cnt == (int) bomb_pos.size()) {
+		ans = max(ans, Calc());
+		return;
+	}
+	for(int i = 1; i <= 3; i++) {
+        int x, y;
+        tie(x, y) = bomb_pos[cnt];
+        
+		bomb_type[x][y] = i;
+		FindMaxArea(cnt + 1);
+		bomb_type[x][y] = 0;
+	}
 }
 
 int main() {
-    cin >> n;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++) {
-            cin >> grid[i][j];
-            if (grid[i][j] == 1) 
-                bomb.push_back({i, j});
-        }
-    bomb_size = bomb.size();
-    GetSpace(0);
-
-    cout << answer;
-    
-    return 0;
+	cin >> n;
+	
+	for(int i = 0; i < n; i++)
+		for(int j = 0; j < n; j++) {
+            int bomb_place;
+			cin >> bomb_place;
+			if(bomb_place)
+				bomb_pos.push_back(make_pair(i, j));
+		}
+	
+	FindMaxArea(0);
+	
+	cout << ans;
+	return 0;
 }
