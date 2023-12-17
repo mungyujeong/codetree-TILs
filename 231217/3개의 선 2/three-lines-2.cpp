@@ -15,7 +15,7 @@ int main() {
 
     for (int i = 0; i <= 10; i++) {
         for (int j = 0; j <= 10; j++) {
-            for (int k = j + 1; k <= 10; k++) {
+            for (int k = 0; k <= 10; k++) {
                 
                 int arr[3] = {i, j, k};
                 int checked[MAX_N] = {0, };
