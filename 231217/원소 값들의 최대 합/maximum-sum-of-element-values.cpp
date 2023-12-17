@@ -15,22 +15,16 @@ int main() {
         
     
     for (int start = 1; start <= n; start++) {
-        int count = start;
+        int index = start;
         int sum = 0;
         int time = m;
 
-        int tmp[MAX_N];
-        for (int i = 1; i <= n; i++)
-            tmp[i] = arr[i];
-
         while (time--) {
-            int value = tmp[start];
-            // cout << value << endl;
+            int value = arr[index];
             sum += value;
-            swap(tmp[start], tmp[value]);
+            index = value;
         }
         answer = max(answer, sum);
-        // cout << "end" << endl;
     } 
     cout << answer;
     return 0;
