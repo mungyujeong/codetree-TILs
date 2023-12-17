@@ -18,21 +18,20 @@ int main() {
     
     for (int i = 0; i < n; i++) {
         arr[i] *= 2;
-        int sum = 0;
         for (int j = 0; j < n; j++) {
+            int sum = 0;
+
             for (int k = 0; k < n; k++) 
                 if (j != k)
                     v.push_back(arr[k]);
             
-
             for (int k = 0; k < n - 2; k++)  
                 sum += abs(v[k] - v[k + 1]);
             
             answer = min(answer, sum);
+            v.clear();
         }
-        
         arr[i] /= 2;
-        v.clear();
     }
 
     cout << answer;
