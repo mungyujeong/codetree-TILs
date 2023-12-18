@@ -8,10 +8,17 @@ int n;
 int answer = INT_MAX;
 vector<int> v;
 vector<int> selected;
+int sum = 0;
 
-void HalfCombination(int depth,int cnt) {
+void HalfCombination(int depth, int cnt) {
     if (cnt == n) {
-        answer = min(answer, abs(selected[0] - selected[1]));
+        int count = 0;
+        for (auto i : selected) {
+            count += i;
+            // cout << i << " ";
+        }
+        cout << endl;
+        answer = min(answer, abs(sum - 2 * count));
         return;
     }
 
@@ -27,7 +34,6 @@ void HalfCombination(int depth,int cnt) {
 
 int main() {
     cin >> n;
-    int sum = 0;
     for (int i = 0; i < 2 * n; i++) {
         int x;
         cin >> x;
