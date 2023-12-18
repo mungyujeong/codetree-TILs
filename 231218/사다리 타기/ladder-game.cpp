@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #define MAX_M 15
-#define MAX_N 11
+#define MAX_N 10
 
 using namespace std;
 
@@ -14,56 +14,58 @@ vector<pair<int, int>> rows;
 vector<pair<int, int>> input;
 vector<int> input_result;
 
+
 vector<int> GetResult(vector<pair<int, int>> v) {
-
     vector<int> result;
-    for (int i = 0; i <= n; i++)
-        result.push_back(i);
+    for (int i = 0; i <= n; i++) 
+        result.push_back(0);
 
-    for (int i = 0; i < (int)v.size(); i++) {
-        int idx = v[i].second;
-        swap(result[idx], result[idx + 1]);
+    int a, b;
+    int grid[MAX_M + 1][MAX_N + 1] = {0, };
+
+    for (auto i : v) {
+        tie(a, b) = i;
+        // cout << "a, b: " << a << " " << b << endl;
+        grid[b][a] = 1;
+        grid[b][a + 1] = 2;
     }
 
-    return result;
-
-    // 시간초과...
-    // vector<int> result;
-    // for (int i = 0; i <= n; i++) 
-    //     result.push_back(0);
-
-    // int a, b;
-    // int grid[MAX_M + 1][MAX_N + 1] = {0, };
-
-    // for (auto i : v) {
-    //     tie(a, b) = i;
-    //     grid[b][a] = 1;
-    //     grid[b][a + 1] = 2;
+    // for (int i = 0; i <= 7; i++) {
+    //     for (int j = 0; j <= 6; j++)
+    //         cout << grid[i][j] << " ";
+    //     cout << endl;
     // }
 
-    // // 하 우 좌
-    // int dx[3] = {1, 0, 0};
-    // int dy[3] = {0, 1, -1};
+    // 하 우 좌
+    int dx[3] = {1, 0, 0};
+    int dy[3] = {0, 1, -1};
 
-    // // 가로줄에 따른 결과값 저장
-    // for (int start = 1; start <= n; start++) {
-    //     int x = 1; int y = start;
-    //     while (x != MAX_M + 1) {
-    //         if (grid[x][y] == 1) {
-    //             x += dx[0];
-    //             y += dy[1];
-    //         } else if (grid[x][y] == 2) {
-    //             x += dx[0];
-    //             y += dy[2];
-    //         } else {
-    //             x += dx[0];
-    //         }
-    //     }
+    // 가로줄에 따른 결과값 저장
+    for (int start = 1; start <= n; start++) {
+        int x = 1; int y = start;
+        // cout << "start: " << start << endl;
+        while (x != MAX_M + 1) {
+            // cout << x << " " << y <<endl;1
+            if (grid[x][y] == 1) {
+                x += dx[0];
+                y += dy[1];
+            } else if (grid[x][y] == 2) {
+                x += dx[0];
+                y += dy[2];
+            } else {
+                x += dx[0];
+            }
+        }
 
-    //     result[y] = start;
-    // }
+        // cout << "result: " << x << " " << y << endl;
+
+        result[y] = start;
+        // for (auto i : result)
+        //     cout << i << " ";
+        // cout << endl;
+    }
     
-    // return result;
+    return result;
 }
 
 bool IsSameResult() {
@@ -79,11 +81,12 @@ void RecursiveRow(int depth) {
         return;
     }
 
-    
-    rows.push_back(input[depth]);
-    RecursiveRow(depth + 1);
-    rows.pop_back();
-    RecursiveRow(depth + 1);
+    // for (int i = depth; i < m; i++) {
+        // cout << i << endl;
+        rows.push_back(input[depth]);
+        RecursiveRow(depth + 1);
+        rows.pop_back();
+        RecursiveRow(depth + 1);
     
 
     return;
@@ -94,9 +97,8 @@ int main() {
     for (int i = 0; i < m; i++) {
         int a, b;
         cin >> a >> b;
-        input.push_back({b, a - 1});
+        input.push_back({a, b});
     }
-    sort(input.begin(), input.end());
     input_result = GetResult(input);
     // vector<int> zero_result;
     // zero_result = GetResult(rows);
