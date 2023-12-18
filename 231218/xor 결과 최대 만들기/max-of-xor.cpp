@@ -11,18 +11,19 @@ vector<int> v;
 vector<int> candidate;
 
 int GetCount() {
-    int result;
-    for (auto i : candidate) {
-        result ^= i;
+    int result = candidate[0];
+    for (int i = 1; i < candidate.size(); i++) {
+        result = result ^ candidate[i];
     }
     return result;
+
 }
 
 void FindXor(int depth, int cnt) {
     if (depth == n) {
-        if (cnt == m) {
+        if (cnt == m) 
             answer = max(answer, GetCount());
-        }
+        
         return;
     }
 
