@@ -48,6 +48,7 @@ int GetCount() {
     // }
     // cout << endl;
     // cout << expression[0] << " " << expression[1] << endl;
+    if (v.size() == 0) return 4;
     int a = alpha_recursive[expression[0]];
     int b = alpha_recursive[expression[1]];
     int result = operate(a, b, v[0]);
