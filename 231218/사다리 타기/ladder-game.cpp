@@ -44,7 +44,7 @@ vector<int> GetResult(vector<pair<int, int>> v) {
     for (int start = 1; start <= n; start++) {
         int x = 1; int y = start;
         // cout << "start: " << start << endl;
-        while (x != m + 1) {
+        while (x != MAX_M + 1) {
             // cout << x << " " << y <<endl;1
             if (grid[x][y] == 1) {
                 x += dx[0];
