@@ -19,15 +19,18 @@ int Calc() {
     // cout << endl;
 
     int x, y;
+    int tmp_x = start_x;
+    int tmp_y = start_y;
     int dist = 0;
     for (int i = 0; i < 3; i++) {
         tie(x, y) = coord[v[i] - 1];
-        dist += abs(x - start_x) + abs(y - start_y);
-        start_x = x;
-        start_y = y;
+        // cout << v[i] << ": " << x << ", " << y << endl;
+        dist += abs(x - tmp_x) + abs(y - tmp_y);
+        // cout << dist << endl;
+        tmp_x = x;
+        tmp_y = y;
     }
-
-    dist += abs(start_x - end_x) + abs(start_y - end_y);
+    dist += abs(tmp_x - end_x) + abs(tmp_y - end_y);
     // cout << dist << endl;
     return dist;
 }
