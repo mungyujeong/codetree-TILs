@@ -17,7 +17,7 @@ void HalfCombination(int depth, int cnt) {
             count += i;
             // cout << i << " ";
         }
-        cout << endl;
+        // cout << endl;
         answer = min(answer, abs(sum - 2 * count));
         return;
     }
