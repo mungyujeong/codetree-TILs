@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <climits>
 
 #define MAX_N 10
@@ -11,19 +10,23 @@ bool visited[MAX_N + 1];
 int grid[MAX_N][MAX_N];
 int answer = INT_MAX;
 
-void Cycle(int depth, int row, int cost) {
-    if (depth == n - 1) {
+void Cycle(int depth, int row, int cost, int cnt) {
+    if (cnt == n - 1) {
         answer = min(answer, cost + grid[row][0]);
         return;
     }
 
+    if (depth == n - 1)
+        return;
+
     for (int col = 1; col < n; col++) {
         if (visited[col]) continue;
         if (col == row) continue;
+        if (grid[row][col] == 0) continue;
         visited[col] = true;
-        // cout << row << " " << col << endl;
-        Cycle(depth + 1, col, cost + grid[row][col]);
+        Cycle(depth + 1, col, cost + grid[row][col], cnt + 1);
         visited[col] = false;
+        Cycle(depth + 1, col, cost + grid[row][col], cnt);
     }
 
     return;
@@ -35,7 +38,7 @@ int main() {
         for (int j = 0; j < n; j++)
             cin >> grid[i][j];
 
-    Cycle(0, 0, 0);
+    Cycle(0, 0, 0, 0);
     cout << answer;
     return 0;
 }
