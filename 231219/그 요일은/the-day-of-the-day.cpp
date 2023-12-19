@@ -32,7 +32,7 @@ int main() {
         }
     }
     
-    if (diff % 7 == value)
+    if (diff % 7 >= value)
         count++;
 
     cout << count;
