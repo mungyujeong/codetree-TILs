@@ -34,11 +34,11 @@ void Cycle(int depth, int row, int cost, int cnt) {
         if (col == row) continue;
         if (grid[row][col] == 0) continue;
         visited[col] = true;
-        v.push_back({row, col});
+        // v.push_back({row, col});
         Cycle(depth + 1, col, cost + grid[row][col], cnt + 1);
         visited[col] = false;
-        v.pop_back();
-        Cycle(depth + 1, col, cost + grid[row][col], cnt);
+        // v.pop_back();
+        // Cycle(depth + 1, col, cost + grid[row][col], cnt);
     }
 
     return;
