@@ -17,19 +17,15 @@ void GetSum(int depth, int count) {
         return;
     }
 
-    for (int i = 0; i < n; i++) {
-        if (row_visited[i]) continue;
-        row_visited[i] = true;
-        for (int j = 0; j < n; j++) {
-            if (col_visited[j]) continue;
-            col_visited[j] = true;
-            // cout << "depth: " << depth << " " << i << " " << j << endl;
-            GetSum(depth + 1, count + grid[i][j]);
-
-            col_visited[j] = false;
-        }
-        row_visited[i] = false;
+    for (int j = 0; j < n; j++) {
+       if (col_visited[j]) continue;
+       col_visited[j] = true;
+    //    cout << "depth: " << depth << " " << j << endl;
+       GetSum(depth + 1, count + grid[depth - 1][j]);
+       col_visited[j] = false;
     }
+
+    return;
 }
 
 int main() {
