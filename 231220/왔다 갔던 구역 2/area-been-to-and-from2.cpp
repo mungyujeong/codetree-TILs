@@ -19,7 +19,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         if (c[i] == 'L') {
-            for (int j = curr_x - x[i] + 1; j <= curr_x; j++) {
+            for (int j = curr_x - x[i]; j < curr_x; j++) {
                 arr[j]++;
             }
             curr_x = curr_x - x[i];
@@ -34,7 +34,10 @@ int main() {
     int answer = 0;
     for (int i = 0; i < MAX_N + OFFSET + 1; i++) {
         if (arr[i] > 1) answer++;
+        // cout << arr[i] << " ";
+        // if (i == OFFSET) cout << "| offset: ";
     }
     cout << answer;
+
     return 0;
 }
