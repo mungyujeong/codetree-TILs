@@ -41,6 +41,7 @@ int main() {
         }
     }
     // cout << max_x << " " << min_x << " | " << max_y << " " << min_y << endl;
-    cout << (max_x - min_x + 1) * (max_y - min_y + 1);
+    if (max_x == INT_MIN) cout << 0;
+    else cout << (max_x - min_x + 1) * (max_y - min_y + 1);
     return 0;
 }
