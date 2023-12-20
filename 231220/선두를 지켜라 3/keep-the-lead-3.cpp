@@ -7,8 +7,8 @@ using namespace std;
 int n, m;
 int arr_a[MAX_T + 1];
 int arr_b[MAX_T + 1];
-int cnt[MAX_T + 1];
-int answer;
+int cnt[MAX_T + 1] = {};
+int answer = 0;
 
 int main() {
     cin >> n >> m;
@@ -25,7 +25,7 @@ int main() {
     }
 
     int time_b = 1;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < m; i++) {
         int v, t;
         cin >> v >> t;
 
@@ -34,6 +34,7 @@ int main() {
             time_b++;
         }
     }
+    // cout << time_a << " " << time_b << endl;
 
     // for (int i = 1; i < time_a; i++) {
     //     cout << arr_a[i] << " ";
@@ -48,7 +49,7 @@ int main() {
     for (int i = 1; i < time_b; i++) {
         if (arr_a[i] > arr_b[i]) cnt[i] = 1;
         else if (arr_a[i] < arr_b[i]) cnt[i] = 2;
-        else cnt[i] = 3;
+        else if (arr_a[i] == arr_b[i]) cnt[i] = 3;
         // cout << cnt[i] << " ";
     }
     // cout << endl;
