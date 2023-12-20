@@ -5,7 +5,7 @@
 using namespace std;
 
 int n;
-int arr[MAX_N];
+int arr[MAX_N + 1];
 int answer;
 
 int main() {
