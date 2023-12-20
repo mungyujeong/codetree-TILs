@@ -1,14 +1,14 @@
 #include <iostream>
 
-#define MAX_T 1000
+#define MAX_T 1000000
 
 using namespace std;
 
 int n, m;
 int t;
 char d;
-int a[MAX_T * 2 + 1];
-int b[MAX_T * 2 + 1];
+int a[MAX_T + 1];
+int b[MAX_T + 1];
 int a_curr_x = 0;
 int b_curr_x = 0;
 int tmp_time = 0;
