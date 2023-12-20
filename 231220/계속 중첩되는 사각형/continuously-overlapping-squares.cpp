@@ -20,7 +20,7 @@ int main() {
 
         for (int j = x1; j < x2; j++) {
             for (int k = y1; k < y2; k++) {
-                grid[j][k] = i % 2;
+                grid[j][k] = i % 2 ? 2 : 1;
             }
         }
     }
@@ -29,7 +29,7 @@ int main() {
 
     for (int i = 0; i <= MAX_R; i++) {
         for (int j = 0; j <= MAX_R; j++) {
-            if (grid[i][j] == 1) answer++;
+            if (grid[i][j] == 2) answer++;
         }
     }
     cout << answer;
