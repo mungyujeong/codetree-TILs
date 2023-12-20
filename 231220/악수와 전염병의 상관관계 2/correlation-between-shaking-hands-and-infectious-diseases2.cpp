@@ -15,8 +15,9 @@ int infected[MAX_N + 1];
 
 int main() {
     cin >> n >> k >> p >> t;
-    infected[p] = true;
+    infected[p] = 1;
     shake_time[p] = k;
+    
     for (int i = 0; i < t; i++) {
         vector<int> tmp;
         int ti, x, y;
@@ -41,15 +42,16 @@ int main() {
         } else if (infected[x] && shake_time[x] > 0) {
             shake_time[x]--;
             infected[y] = 1;
+            shake_time[y] = k;
         } else if (infected[y] && shake_time[y] > 0) {
             shake_time[y]--;
             infected[x] = 1;
+            shake_time[x] = k;
         } 
     }
 
     for (int i = 1; i <= n; i++) {
         cout << infected[i];
     }
-    cout << endl;
     return 0;
 }
