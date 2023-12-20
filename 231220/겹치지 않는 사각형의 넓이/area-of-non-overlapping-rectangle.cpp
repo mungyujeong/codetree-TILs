@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int grid[MAX_R + 1][MAX_R + 1];
+int grid[MAX_R + 1][MAX_R + 1] = {};
 
 int main() {
     for (int i = 1; i <= 3; i++) {
@@ -26,7 +26,7 @@ int main() {
     int answer = 0;
     for (int i = 0; i <= MAX_R; i++) {
         for (int j = 0; j <= MAX_R; j++) {
-            if (grid[i][j] == 1 || grid[i][j] == 3)
+            if (grid[i][j] == 1 || grid[i][j] == 2)
                 answer++;
         }
     }
