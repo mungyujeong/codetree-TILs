@@ -32,6 +32,7 @@ int main() {
             tmp += v[j];
         }
         // cout << tmp << endl;
+        input.push_back(tmp);
         m[tmp] += 1;
     }
 
