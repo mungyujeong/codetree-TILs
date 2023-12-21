@@ -15,10 +15,12 @@ int main() {
         v.push_back(x);
     }
 
-    for (int i = 0; i < v.size() - 1; i++) {
-        for (int j = i + 1; j < v.size(); j++) {
-            if (v[j] - v[i] < 0) continue;
-            answer = max(answer, v[j] - v[i]);
+    int buy = v[0];
+    for (int i = 1; i < v.size(); i++) {
+        if (buy < v[i])
+            answer = max(answer, v[i] - buy);
+        else {
+            buy = v[i];
         }
     }
     cout << answer;
