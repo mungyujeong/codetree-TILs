@@ -1,32 +1,32 @@
 #include <iostream>
-#include <deque>
+#include <queue>
 #include <algorithm>
 
 using namespace std;
 
 int n;
-deque<int> q;
+priority_queue<int> pq;
 
 int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
-        q.push_back(x);
+        pq.push(-x);
     }
 
     int answer = 0;
-    while (q.size() != 1) {
+    while (pq.size() != 1) {
         // cout << answer << endl;
-        sort(q.begin(), q.end());
 
         int a, b;
-        a = q[0];
-        b = q[1];
+        a = -pq.top();
+        pq.pop();
+        b = -pq.top();
+        pq.pop();
+
         answer += a + b;
-        q.pop_front();
-        q.pop_front();
-        q.push_back(a + b);
+        pq.push(-(a + b));
     }
     cout << answer;
     return 0;
