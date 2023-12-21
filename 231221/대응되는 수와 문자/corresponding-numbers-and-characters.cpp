@@ -20,7 +20,8 @@ int main() {
     for (int i = 0; i < m; i++) {
         string a;
         cin >> a;
-        if ("0" <= a && a <= "9") {
+        // cout << (int)a[0] - '0' << endl;
+        if (0 <= (int)a[0] - '0' && (int)a[0] - '0' <= 9) {
             cout << num[stoi(a)] << endl;
         } else {
             cout << str[a] << endl;
