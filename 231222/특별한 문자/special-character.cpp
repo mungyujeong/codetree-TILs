@@ -13,18 +13,14 @@ int main() {
     cin >> input;
     for (int i = 0; i < input.size(); i++) {
         m[input[i]]++;
-        v.push_back(input[i]);
     }
-    sort(v.begin(), v.end());
 
-    bool isAnswer = false;
-    for (auto i : v) {
-        if (m[i] == 1) {
-            isAnswer = true;
-            cout << i;
-            break;
+    for (int i = 0; i < input.size(); i++) {
+        if (m[input[i]] == 1) {
+            cout << input[i];
+            return 0;
         }
     }
-    if (!isAnswer) cout << "None";
+    cout << "None";
     return 0;
 }
