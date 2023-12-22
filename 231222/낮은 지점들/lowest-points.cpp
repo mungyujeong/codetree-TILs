@@ -18,7 +18,7 @@ int main() {
             m[x] = y;
         }
     }
-    int answer = 0;
+    long long answer = 0;
     for (auto i : m) {
         answer += i.second;
     }
