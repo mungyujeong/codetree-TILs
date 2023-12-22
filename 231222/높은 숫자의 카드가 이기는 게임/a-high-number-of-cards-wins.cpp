@@ -32,19 +32,27 @@ int main() {
     //     cout << b[i] << " ";
     // }
     // cout << endl;
-    for (int i = 0; i < n; i++) {
-        if (a[i] < b[i]) {
-            int origin = a[i];
-            for (int j = i; j < n; j++) {
-                if (j == i) continue;
-                if (a[j] > b[i]) {
-                    swap(a[i], a[j]);
-                    break;
-                }
-            }
-            if (origin == a[i]) break;
+    // for (int i = 0; i < n; i++) {
+    //     if (a[i] < b[i]) {
+    //         int origin = a[i];
+    //         for (int j = i; j < n; j++) {
+    //             if (j == i) continue;
+    //             if (a[j] > b[i]) {
+    //                 swap(a[i], a[j]);
+    //                 break;
+    //             }
+    //         }
+    //         if (origin == a[i]) break;
+    //     }
+    //     answer++;
+    // }
+
+    int b_idx = 0;
+    for (int i = 0; i < a.size(); i++) {
+        if (b_idx < n && a[i] > b[b_idx]) {
+            answer++;
+            b_idx++;
         }
-        answer++;
     }
 
     // int idx = 0;
