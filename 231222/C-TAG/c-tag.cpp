@@ -8,8 +8,8 @@
 using namespace std;
 
 int n, m;
-char arr_a[MAX_M][MAX_N];
-char arr_b[MAX_M][MAX_N];
+char arr_a[MAX_N][MAX_M];
+char arr_b[MAX_N][MAX_M];
 
 int main() {
     cin >> n >> m;
