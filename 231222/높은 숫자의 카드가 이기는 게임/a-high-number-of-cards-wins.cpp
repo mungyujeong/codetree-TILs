@@ -11,7 +11,7 @@ int n;
 int answer = 0;
 vector<int> a;
 vector<int> b;
-int arr[50001] = {};
+int arr[2 * MAX_N + 1] = {};
 
 int main() {
     cin >> n;
