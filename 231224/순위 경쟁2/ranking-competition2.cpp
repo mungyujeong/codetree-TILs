@@ -11,8 +11,8 @@ int main() {
     m['A'] = 0;
     m['B'] = 0;
     int answer = 0;
-    char winner;
-    char tmp;
+    char winner = 'C';
+    char tmp = 'C';
     for (int i = 0; i < n; i++) {
         char c;
         int s;
@@ -26,6 +26,7 @@ int main() {
         } else {
             winner = 'C';
         }
+
         if (winner != tmp) {
             answer++;
             tmp = winner;
