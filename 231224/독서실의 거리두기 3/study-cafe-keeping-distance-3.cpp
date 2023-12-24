@@ -22,10 +22,15 @@ int main() {
         }
         if (cnt == 2) {
             cnt = 0;
-            s = v[0];
-            e = v[1];
-            dist = max(dist, v[1] - v[0] - 1);
+            if (dist < v[1] - v[0]) {
+                dist = v[1] - v[0];
+                s = v[0];
+                e = v[1];
+                // cout << s << " " << e << endl;
+            }
             v.clear();
+            v.push_back(v[1]);
+            cnt = 1;
         }
     }
     // cout << s << " " << e << " " << dist << endl;
