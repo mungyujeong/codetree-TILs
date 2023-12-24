@@ -38,7 +38,7 @@ int main() {
     int second = -pq.top();
     pq.pop();
 
-    if (-pq.top() == second) {
+    if (!pq.empty() && -pq.top() == second) {
         cout << -1;
         return 0;
     } else {
