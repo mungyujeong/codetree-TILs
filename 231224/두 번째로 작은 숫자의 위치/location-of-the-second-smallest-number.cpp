@@ -25,13 +25,12 @@ int main() {
     //     pq.pop();
     // }
 
-    int cnt = 0;
     for (int i = 0; i < n - 1; i++) {
         if (-pq.top() == smallest) pq.pop();
-        else cnt++;
+        else break;
     }
 
-    if (cnt == n - 1) {
+    if (pq.empty()) {
         cout << -1;
         return 0;
     }
