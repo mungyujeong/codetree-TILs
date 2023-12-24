@@ -30,17 +30,22 @@ int main() {
     }
     // cout << s << " " << e << " " << dist << endl;
     str[(s + e) / 2] = '1';
+    // cout << str << endl;
+    v.clear();
     dist = INT_MAX;
+    cnt = 0;
     for (int i = 0 ; i < str.length(); i++) {
         if (str[i] == '1') {
             cnt++;
             v.push_back(i);
+            // cout << i << endl;
         }
         if (cnt == 2) {
             cnt = 0;
             s = v[0];
             e = v[1];
-            dist = min(dist, v[1] - v[0]);
+            dist = min(dist, e - s);
+            // cout << e << " " << s << " " << dist << endl;
             v.clear();
         }
     }
