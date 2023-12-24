@@ -13,7 +13,7 @@ int main() {
     int c = arr[2];
 
     if (a + 1 == b && b + 1 == c) cout << 0;
-    else if (a + 2 == b || b + 2 == c) cout << 1;
+    else if (max(b - a, c - b) == 2) cout << 1;
     else {
         int diff = max(b - a - 1, c - b - 1);
         cout << diff;
