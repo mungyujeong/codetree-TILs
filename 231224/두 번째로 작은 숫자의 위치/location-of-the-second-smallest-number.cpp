@@ -21,8 +21,19 @@ int main() {
     int smallest = -pq.top();
     pq.pop();
     // cout << smallest << endl;
-    while (-pq.top() == smallest) {
-        pq.pop();
+    // while (-pq.top() == smallest) {
+    //     pq.pop();
+    // }
+
+    int cnt = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (-pq.top() == smallest) pq.pop();
+        else cnt++;
+    }
+
+    if (cnt == n - 1) {
+        cout << -1;
+        return 0;
     }
 
     int second = -pq.top();
