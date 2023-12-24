@@ -36,6 +36,8 @@ int main() {
     // cout << s << " " << e << " " << dist << endl;
     str[(s + e) / 2] = '1';
     // cout << str << endl;
+
+
     v.clear();
     dist = INT_MAX;
     cnt = 0;
@@ -47,11 +49,15 @@ int main() {
         }
         if (cnt == 2) {
             cnt = 0;
-            s = v[0];
-            e = v[1];
-            dist = min(dist, e - s);
-            // cout << e << " " << s << " " << dist << endl;
+            if (dist > v[1] - v[0]) {
+                dist = v[1] - v[0];
+                // s = v[0];
+                // e = v[1];
+                // cout << s << " " << e << endl;
+            }
             v.clear();
+            v.push_back(v[1]);
+            cnt = 1;
         }
     }
     cout << dist;
