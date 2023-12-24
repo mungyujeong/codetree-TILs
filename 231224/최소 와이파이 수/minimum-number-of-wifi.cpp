@@ -29,13 +29,9 @@ int main() {
 
     int answer = 0;
     for (int i = 0; i < n; i++) {
-        if (rp[i] == 1) continue;
         if (arr[i] == 1) {
-            for (int j = i; j <= i + 2 * m; j++) {
-                if (j >= n) break;
-                rp[j] = 1;
-            }
             answer++;
+            i += 2 * m;
         }
     }
 
