@@ -13,6 +13,9 @@ int main() {
         cin >> arr[i];
     
     sort(arr.begin(), arr.end());
-    cout << arr[2 * n - 1] + arr[2 * n - 2];
+    int answer = 0;
+    for (int i = 0; i < n; i++) 
+        answer = max(answer, arr[i] + arr[2*n - i - 1]);
+    cout << answer;
     return 0;
 }
