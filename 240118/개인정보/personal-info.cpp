@@ -26,6 +26,8 @@ bool cmp_h(const Human& a, const Human& b) {
 }
 
 int main() {
+    cout <<fixed;
+    cout.precision(1);
     vector<Human> v(5);
     for (int i = 0; i < 5; i++)
         cin >> v[i].name >> v[i].h >> v[i].w;
