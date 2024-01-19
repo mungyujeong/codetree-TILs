@@ -1,31 +1,27 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 #define MAX_N 1'000
 
 using namespace std;
 
 int n;
-int arr[MAX_N];
-int sorted[MAX_N];
-int visited[MAX_N];
+vector<pair<int, int>> v;
+int answer[MAX_N];
 
 int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-        sorted[i] = arr[i];
+        int x;
+        cin >> x;
+        v.push_back({x, i});
     }
-    sort(sorted, sorted + n);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (visited[j]) continue;
-            if (arr[i] == sorted[j]) {
-                visited[j] = 1;
-                cout << j + 1 << ' ';
-                break;
-            }
-        }
-    }    
+    sort(v.begin(), v.end());
+    for (int i = 0; i < n; i++)
+        answer[v[i].second] = i + 1;
+    
+    for (int i = 0; i < n; i++)
+        cout << answer[i] << ' ';
     return 0;
 }
