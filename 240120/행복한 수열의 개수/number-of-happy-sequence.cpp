@@ -19,8 +19,8 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         int before = board[i][0];
-        int cnt = 1;
-        for (int j = 1; j < n; j++) {
+        int cnt = 0;
+        for (int j = 0; j < n; j++) {
             if (before == board[i][j]) cnt++;
             else {
                 cnt = 1;
@@ -35,8 +35,8 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         int before = board[0][i];
-        int cnt = 1;
-        for (int j = 1; j < n; j++) {
+        int cnt = 0;
+        for (int j = 0; j < n; j++) {
             if (before == board[j][i]) cnt++;
             else {
                 cnt = 1;
@@ -50,6 +50,6 @@ int main() {
     }
 
     cout << answer;
-    
+
     return 0;
 }
