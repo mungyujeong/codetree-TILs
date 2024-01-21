@@ -31,16 +31,13 @@ void bfs(int sx, int sy, int k) {
             Q.push({nx, ny});
         }
     }
-    // gold -= ((k * k) + ((k + 1) * (k + 1)));
-    // answer = max(answer, gold);
-    if (gold * m - ((k * k) + ((k + 1) * (k + 1))) >= 0) {
-        // cout << k << ": " << gold << " x, y: " << x << ' ' << y << endl;
+    if (gold * m - ((k * k) + ((k + 1) * (k + 1))) >= 0) 
         answer = max(answer, gold);
-
-    }
 }
 
 int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     cin >> n >> m;
     for (int i = 0; i < n; i++) 
         for (int j = 0; j < n; j++) 
