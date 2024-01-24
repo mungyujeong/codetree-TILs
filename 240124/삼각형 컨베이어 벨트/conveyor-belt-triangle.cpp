@@ -5,7 +5,7 @@
 using namespace std;
 
 int n, t;
-int arr[MAX_N][3];
+int arr[3][MAX_N];
 
 int main() {
     ios_base::sync_with_stdio(0);
@@ -18,12 +18,12 @@ int main() {
     
     while (t--) {
         int tmp[3] = {};
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) 
             tmp[i] = arr[i][n - 1];
-        
+
+        for (int i = 0; i < 3; i++)
             for (int j = n - 1; j >= 1; j--)
                 arr[i][j] = arr[i][j - 1];
-        }
 
         for (int i = 0; i < 3; i++)
             arr[i][0] = tmp[(i + 2) % 3];
