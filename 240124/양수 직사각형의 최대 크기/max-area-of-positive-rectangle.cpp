@@ -35,11 +35,10 @@ int main() {
 
                     if (!possible) cnt = -1;
                     answer = max(answer, cnt);
-
                 }
             }
         }
     }
-
-    cout << answer;
+    if (answer == 0) cout << -1;
+    else cout << answer;
 }
