@@ -15,7 +15,7 @@ int get_rect() {
         for (int j = 0; j < m; j++) {
 
             for (int h = i; h < n; h++) {
-                for (int w = j; w < n; w++) {
+                for (int w = j; w < m; w++) {
                     bool possible = true;
                     int cnt = 0;
                     // 두번째 사각형
@@ -52,7 +52,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             for (int h = i; h < n; h++) {
-                for (int w = j; w < n; w++) {
+                for (int w = j; w < m; w++) {
                     int cnt = 0;
                     for (int t = 0; t < MAX_N; t++)
                         fill(visited[t], visited[t] + MAX_N , 0);
@@ -63,7 +63,7 @@ int main() {
                             visited[x][y] = 1;
                         }
                     }
-
+                    // cout << cnt << ' ' << get_rect() << endl;
                     int second = get_rect();
                     if (second != -2000)
                         answer = max(answer, cnt + second);
