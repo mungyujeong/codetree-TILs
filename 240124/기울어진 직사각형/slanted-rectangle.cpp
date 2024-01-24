@@ -11,41 +11,15 @@ int board[MAX_N][MAX_N];
 
 int get_sum(int x, int y, int w, int h) {
     int cnt = 0;
+    int move_dist[] = {w, h, w, h};
 
-    for (int i = 0; i < w; i++) {
-        int nx = x + dx[0];
-        int ny = y + dy[0];
-        if (nx < 0 || nx >= n || ny < 0 || ny >= n) return -1;
-        cnt += board[nx][ny];
-        x = nx;
-        y = ny;
-    }
-
-    for (int i = 0; i < h; i++) {
-        int nx = x + dx[1];
-        int ny = y + dy[1];
-        if (nx < 0 || nx >= n || ny < 0 || ny >= n) return -1;
-        cnt += board[nx][ny];
-        x = nx;
-        y = ny;
-    }
-
-    for (int i = 0; i < w; i++) {
-        int nx = x + dx[2];
-        int ny = y + dy[2];
-        if (nx < 0 || nx >= n || ny < 0 || ny >= n) return -1;
-        cnt += board[nx][ny];
-        x = nx;
-        y = ny;
-    }
-
-    for (int i = 0; i < h; i++) {
-        int nx = x + dx[3];
-        int ny = y + dy[3];
-        if (nx < 0 || nx >= n || ny < 0 || ny >= n) return -1;
-        cnt += board[nx][ny];
-        x = nx;
-        y = ny;
+    for (int d = 0; d < 4; d++) {
+        for (int i = 0; i < move_dist[d]; i++) {
+            x += dx[d];
+            y += dy[d];
+            if (x < 0 || y < 0 || x >= n || y >= n) return -1;
+            cnt += board[x][y];
+        }
     }
 
     return cnt;
