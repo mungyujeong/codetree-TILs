@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <tuple>
 
 #define MAX_N 100
 
@@ -39,7 +38,7 @@ void update() {
     if (cnt < m) v.push_back({st, en});
 
     int idx = 0;
-    int tmp[MAX_N];
+    int tmp[MAX_N] = {};
     for (int i = 0; i < v.size(); i++) {
         tie(st, en) = v[i];
         // cout << st << ' ' << en << endl;
@@ -59,14 +58,13 @@ void update() {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
     cin >> n >> m;
     for (int i = 0; i < n; i++)
         cin >> bomb[i];
     
     while (is_possible()) {
         update();
+        if (n == 0) break;
     }
 
     // cout << "result=======\n";
