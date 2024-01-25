@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 #define MAX_N 100
 
@@ -58,6 +59,8 @@ void update() {
 }
 
 int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     cin >> n >> m;
     for (int i = 0; i < n; i++)
         cin >> bomb[i];
