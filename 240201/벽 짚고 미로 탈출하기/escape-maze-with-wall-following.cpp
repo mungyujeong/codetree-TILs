@@ -37,13 +37,12 @@ int main() {
     
     queue<tuple<int, int, int>> Q;
     Q.push({x - 1, y - 1, 0});
-    visited[x - 1][y - 1][0] = true;
 
     while (!Q.empty()) {
         tie(x, y, d) = Q.front(); Q.pop();
         if (visited[x][y][d]) break;
         else visited[x][y][d] = true;
-        
+
         int nx = x + dx[d];
         int ny = y + dy[d];
         if (!InRange(nx, ny)) {
