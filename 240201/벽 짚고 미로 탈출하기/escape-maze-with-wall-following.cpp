@@ -35,7 +35,6 @@ int main() {
     
     queue<tuple<int, int, int>> Q;
     Q.push({x - 1, y - 1, 0});
-    board[x - 1][y - 1] = '1';
     while (!Q.empty()) {
         tie(x, y, d) = Q.front(); Q.pop();
         int nx = x + dx[d];
@@ -44,7 +43,6 @@ int main() {
             cout << answer + 1;
             return 0;
         }
-        if (board[nx][ny] == '1') continue;
         if (board[nx][ny] == '#') {
             Q.push({x, y, (d + 3) % 4});
             continue;
@@ -52,7 +50,6 @@ int main() {
         if (!IsWall(nx, ny, (d + 1) % 4))
             d = (d + 1) % 4;
         Q.push({nx, ny, d});
-        board[nx][ny] = '1';
         answer++;
     }
 
