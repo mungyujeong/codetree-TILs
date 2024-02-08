@@ -20,7 +20,7 @@ bool in_range(int x, int y) {
 }
 
 void simulate() {
-    int x, y, p;
+    int x, y, p, qx, qy;
     char d;
     Q.push({1, 1});
     board[1][1] = 1;
@@ -30,21 +30,18 @@ void simulate() {
     for (auto i : com) {
         tie(d, p) = i;
         while (p--) {
+            answer++;
             x += dx[ascii_dir[d]];
             y += dy[ascii_dir[d]];
-            if (!in_range(x, y) || board[x][y]) {
-                answer++;
-                return; 
-            }
+            tie(qx, qy) = Q.front();
+            if (!in_range(x, y) || (x != qx && y != qy && board[x][y])) return; 
             if (!apple[x][y]) {
-                int qx, qy;
-                tie(qx, qy) = Q.front(); Q.pop();
+                Q.pop();
                 board[qx][qy] = 0;
             }
             apple[x][y] = 0;
             board[x][y] = 1;
             Q.push({x, y});
-            answer++;
         }
     }
 }
