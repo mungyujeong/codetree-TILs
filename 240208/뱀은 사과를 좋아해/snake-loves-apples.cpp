@@ -34,7 +34,7 @@ void simulate() {
             x += dx[ascii_dir[d]];
             y += dy[ascii_dir[d]];
             tie(qx, qy) = Q.front();
-            if (!in_range(x, y) || (x != qx && y != qy && board[x][y])) return; 
+            if (!in_range(x, y) || ((x != qx || y != qy) && board[x][y])) return; 
             if (!apple[x][y]) {
                 Q.pop();
                 board[qx][qy] = 0;
