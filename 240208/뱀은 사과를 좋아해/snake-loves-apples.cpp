@@ -33,12 +33,13 @@ void simulate() {
             answer++;
             x += dx[ascii_dir[d]];
             y += dy[ascii_dir[d]];
-            tie(qx, qy) = Q.front();
-            if (!in_range(x, y) || ((x != qx || y != qy) && board[x][y])) return; 
+            if (!in_range(x, y)) return; 
             if (!apple[x][y]) {
+                tie(qx, qy) = Q.front();
                 Q.pop();
                 board[qx][qy] = 0;
             }
+            if (board[x][y]) return;
             apple[x][y] = 0;
             board[x][y] = 1;
             Q.push({x, y});
