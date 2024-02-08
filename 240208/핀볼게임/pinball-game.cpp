@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int n, board[MAX_N][MAX_N], answer, d;
+int n, board[MAX_N][MAX_N], answer;
 // 우 하 좌 상
 int dx[] = {0, 1, 0, -1};
 int dy[] = {1, 0, -1, 0};
@@ -57,7 +57,7 @@ int main() {
     for (auto i : v) {
         pair<int, int> st, en;
         tie(st, en) = i;
-        d = (d + 1) % 4;
+        int d = (d + 1) % 4;
         
         if (st.first == en.first) 
             for (int j = st.second; j <= en.second; j++) 
