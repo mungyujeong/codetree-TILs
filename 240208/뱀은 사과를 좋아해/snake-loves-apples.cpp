@@ -41,6 +41,7 @@ void simulate() {
                 tie(qx, qy) = Q.front(); Q.pop();
                 board[qx][qy] = 0;
             }
+            apple[x][y] = 0;
             board[x][y] = 1;
             Q.push({x, y});
             answer++;
