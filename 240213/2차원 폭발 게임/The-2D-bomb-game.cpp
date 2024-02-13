@@ -78,11 +78,13 @@ int main() {
     for (int i = 0; i < n; i++) 
         for (int j = 0; j < n; j++) 
             cin >> board[i][j];
-            
+
     // bomb() -> gravity 반복
     // rotate()
     while (k--) {
-        if (bomb()) gravity();
+        while (bomb()) {
+            gravity();
+        }   
         rotate();
         gravity();
     }
