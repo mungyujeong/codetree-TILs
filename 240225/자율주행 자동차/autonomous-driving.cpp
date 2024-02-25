@@ -27,6 +27,7 @@ int simulate(int x, int y, int d) {
         tie(x, y, d) = Q.front(); Q.pop();
         int cnt = 0;
         int nd = d;
+        bool moved = false;
         while (cnt < 4) {
             cnt++;
             nd = (nd + 3) % 4;
@@ -38,12 +39,13 @@ int simulate(int x, int y, int d) {
             answer++;
             visited[nx][ny] = true;
             Q.push({nx, ny, nd});
+            moved = true;
             break;
         }
         
         // 모두 돌았는데 인도이거나 방문한 곳일 경우
         // 1칸 후진
-        if (cnt == 4) {
+        if (!moved) {
             int nx = x - dx[d];
             int ny = y - dy[d];
             if (board[nx][ny] == 1) break;
