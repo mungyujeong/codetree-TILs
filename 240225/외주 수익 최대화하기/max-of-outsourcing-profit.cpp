@@ -10,8 +10,9 @@ vector<int> selected;
 
 int calculate() {
     int sum = 0;
-    int last = 0;
-
+    int last = -1;
+    // for (auto v : selected) cout << v << ' ';
+    // cout << endl;
     for (auto v : selected) {
         tie(t, p) = work[v];
         int finish = v + t - 1;
@@ -20,7 +21,7 @@ int calculate() {
         last = finish;
         sum += p;
     }
-
+    // cout << "sum: " << sum << endl;
     return sum;
 }
 
