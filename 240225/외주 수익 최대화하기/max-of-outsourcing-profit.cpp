@@ -32,14 +32,22 @@ int main() {
             int idx = 0;
             for (int j = i - 1; j >= 1; j--) {
                 // cout << i << ' ' << work_time[j] + j - 1 << ' ' << j << endl;
+                // 끝나는 날짜가 현재 날짜보다 작으면 idx 저장
                 if (work_time[j] + j - 1 < i) {
                     idx = j;
                     break;
                 }
             }
             // cout << "idx: " << idx << endl;
-            for (int j = i; j < i + t; j++) 
-                dp[j] = max(dp[j], p + dp[idx]);
+
+            // 현재 날짜부터 현재 외주작업이 끝날때까지 update
+            // 기존 dp값과 현재 외주작업 가격 + 이전 외주작업 dp값 비교
+            if (dp[i] >= p + dp[idx])
+                for (int j = i; j < i + t; j++) 
+                    dp[j] = dp[i];
+            else
+                for (int j = i; j < i + t; j++)
+                    dp[j] = p + dp[idx];
         }
         // for (int i = 0; i <= n; i++)
         //     cout << dp[i] << ' ';
