@@ -13,6 +13,9 @@ int main() {
         cin >> t >> p;
         work_time[i] = t;
 
+        // 만약 외주기간이 휴가기간을 넘어가면 continue
+        if (t + i - 1 > n) continue;
+
         // 만약 dp[i]에 아무값도 없다면? 
         // dp[i] = dp[i - 1] + p 
         if (dp[i] == 0) {
@@ -38,10 +41,12 @@ int main() {
             for (int j = i; j < i + t; j++) 
                 dp[j] = max(dp[j], p + dp[idx]);
         }
+        // for (int i = 0; i <= n; i++)
+        //     cout << dp[i] << ' ';
+        // cout << endl;
     }
 
-    // for (int i = 0; i <= n; i++)
-        // cout << dp[i] << ' ';
+
     cout << dp[n];
     return 0;
 }
