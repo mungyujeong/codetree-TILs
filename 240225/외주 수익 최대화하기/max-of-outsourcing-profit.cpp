@@ -14,7 +14,10 @@ int main() {
         work_time[i] = t;
 
         // 만약 외주기간이 휴가기간을 넘어가면 continue
-        if (t + i - 1 > n) continue;
+        if (t + i - 1 > n) {
+            for (int j = i; j < t + i; j++) 
+                dp[j] = dp[i - 1];
+        }
 
         // 만약 dp[i]에 아무값도 없다면? 
         // dp[i] = dp[i - 1] + p 
