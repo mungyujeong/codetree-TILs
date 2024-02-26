@@ -17,6 +17,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         answer++;
         arr[i] -= a;
+        if (arr[i] < 0) arr[i] = 0;
         answer += arr[i] / b;
         if (arr[i] % b > 0) answer++;
     }
