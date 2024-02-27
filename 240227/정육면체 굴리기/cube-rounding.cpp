@@ -14,8 +14,8 @@ int r = 3;
 int dx[] = {0, 0, 0, -1, 1};
 int dy[] = {0, 1, -1, 0, 0};
 
-bool in_range(int x, int y) {
-    return 0 <= x && x < n && 0 <= y && y < m;
+bool in_range(int nx, int ny) {
+    return 0 <= nx && nx < n && 0 <= ny && ny < m;
 }
 
 void simulate() {
@@ -41,7 +41,6 @@ void simulate() {
 
     if (board[nx][ny] == 0) {
         board[nx][ny] = dice[bottom];
-        dice[bottom] = 0;
     }
     else {
         dice[bottom] = board[nx][ny];
