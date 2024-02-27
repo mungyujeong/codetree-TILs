@@ -9,32 +9,33 @@ int n, board[MAX_N][MAX_N], answer;
 vector<int> cmd;
 
 void rotate(int d) {
+    // 시계방향으로 회전
     // 0 1 2 3
-    // 좌 우 상 하
+    // 좌 하 우 상
     if (d == 0) return;
     int tmp[MAX_N][MAX_N];
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             tmp[i][j] = board[i][j];
 
-    if (d == 1) {
-        
-    }
-    if (d == 2) {
-
-    }
-    if (d == 3) {
-
-    }
+    if (d == 1) 
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = tmp[n - j - 1][i];
+    if (d == 2) 
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = tmp[n - i - 1][n - j - 1];
+    if (d == 3) 
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = tmp[j][n - i - 1];
 }
 
 void move(int d) {
     rotate(d);
 
-    int grid[MAX_N][MAX_N];
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            grid[i][j] = board[i][j];
+    int grid[MAX_N][MAX_N] = {};
     
     // 왼쪽 기준으로 작성
     for (int i = 0; i < n; i++) {
