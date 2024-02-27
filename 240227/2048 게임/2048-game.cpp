@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int n, board[MAX_N][MAX_N], answer;
+int n, board[MAX_N][MAX_N], backup[MAX_N][MAX_N], answer;
 vector<int> cmd;
 
 void rotate(int d) {
@@ -71,6 +71,10 @@ void backtracking(int depth) {
             move(i);
         
         get_max();
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = backup[i][j];
         return;
     }
 
@@ -86,8 +90,10 @@ int main() {
     cin.tie(0);
     cin >> n;
     for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < n; j++) {
             cin >> board[i][j];
+            backup[i][j] = board[i][j];
+        }
 
     backtracking(0);
 
