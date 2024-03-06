@@ -31,7 +31,7 @@ void move(int x, int y, int d) {
         nx += dx[d];
         ny += dy[d];
         if (!in_range(nx, ny) || board[nx][ny] == 6) break;
-        
+
         grid[nx][ny] = 1;
     }
 }
@@ -53,18 +53,16 @@ void backtracking(int depth) {
         for (int j = 0; j < m; j++)
             backup[i][j] = grid[i][j];
     
-    for (int i = depth; i < v.size(); i++) {
-        int x, y, val;
-        tie(x, y, val) = v[i];
-        for (auto d : dir[val - 1]) {
-            for (auto g : d) 
-                move(x, y, g);
+    int x, y, val;
+    tie(x, y, val) = v[depth];
+    for (auto d : dir[val - 1]) {
+        for (auto g : d) 
+            move(x, y, g);
 
-            backtracking(depth + 1);
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    grid[i][j] = backup[i][j];
-        }
+        backtracking(depth + 1);
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                grid[i][j] = backup[i][j];
     }
 }
 
@@ -75,16 +73,16 @@ int main() {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             cin >> board[i][j];
-            if (board[i][j] != 6 && board[i][j] != 0) {
+            if (board[i][j] == 6) grid[i][j] = 1;
+            else if (board[i][j] != 0) {
                 v.push_back({i, j, board[i][j]});
                 chess++;
             }
-            if (board[i][j] == 6) grid[i][j] = 1;
         }
     }
 
     backtracking(0);
-    
+
     cout << answer;
     return 0;
 }
