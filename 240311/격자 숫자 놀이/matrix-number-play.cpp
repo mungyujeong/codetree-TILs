@@ -8,7 +8,6 @@ int r, c, k, row, col, board[100][100], answer;
 
 int simulate() {
     if (row >= col) {
-        // 행 정렬, 출현 빈도 오름차순
         int max_idx = 0;
         for (int i = 0; i < 100; i++) {
             vector<pair<int, int>> v;
@@ -19,7 +18,7 @@ int simulate() {
                 map[board[i][j]]++;
             }
 
-            for (int j = 0; j <= 100; j++)
+            for (int j = 1; j <= 100; j++)
                 if (map[j]) 
                     v.push_back({map[j], j});
             
@@ -27,11 +26,11 @@ int simulate() {
             int idx = 0;
             
             for (auto p : v) {
-                if (idx >= 100) break;
+                if (idx == 100) break;
                 board[i][idx++] = p.second;
-                if (idx >= 100) break;
+                if (idx == 100) break;
                 board[i][idx++] = p.first;
-                if (idx >= 100) break;
+                if (idx == 100) break;
             }
 
             max_idx = max(max_idx, idx);
@@ -53,18 +52,18 @@ int simulate() {
                 map[board[j][i]]++;
             }
 
-            for (int j = 0; j <= 100; j++)
+            for (int j = 1; j <= 100; j++)
                 if (map[j]) 
                     v.push_back({map[j], j});
             
             sort(v.begin(), v.end());
             int idx = 0;
             for (auto p : v) {
-                if (idx >= 100) break;
+                if (idx == 100) break;
                 board[idx++][i] = p.second;
-                if (idx >= 100) break;
+                if (idx == 100) break;
                 board[idx++][i] = p.first;
-                if (idx >= 100) break;
+                if (idx == 100) break;
             }
             
             max_idx = max(max_idx, idx);
@@ -86,7 +85,12 @@ int main() {
     for (int i = 0; i < 3; i++) 
         for (int j = 0; j < 3; j++)
             cin >> board[i][j];
-   
+
+    if (board[r][c] == k) {
+        cout << 0;
+        return 0;
+    }
+
     while (true) {
         answer++;
         if (answer > 100) {
