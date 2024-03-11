@@ -19,7 +19,7 @@ int simulate() {
                 map[board[i][j]]++;
             }
 
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j <= 100; j++)
                 if (map[j]) 
                     v.push_back({map[j], j});
             
@@ -53,7 +53,7 @@ int simulate() {
                 map[board[j][i]]++;
             }
 
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j <= 100; j++)
                 if (map[j]) 
                     v.push_back({map[j], j});
             
