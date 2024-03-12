@@ -9,6 +9,7 @@ using namespace std;
 int n, m, q, board[MAX_N][MAX_N], answer;
 int dx[] = {1, -1, 0, 0};
 int dy[] = {0, 0, 1, -1};
+bool changed;
 
 bool in_range(int x, int y) {
     return 1 <= x && x <= n && 1 <= y && y <= m;
@@ -58,7 +59,10 @@ void bfs(int cx, int cy) {
         }
     }
 
-    if (cnt) board[cx][cy] = 0;
+    if (cnt != 0) {
+        board[cx][cy] = 0;
+        changed = false;
+    }
 }
 
 int main() {
@@ -74,17 +78,42 @@ int main() {
         cin >> x >> d >> k;
         for (int j = x; j <= n; j+=x) 
             rotate(j, d, k);
-    }
 
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-            if (board[i][j] == 0) continue;
-            bfs(i, j);
+        changed = true;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (board[i][j] == 0) continue;
+                bfs(i, j);
+            }
         }
+
+        int avg = 0;
+        if (!changed) {
+            int cnt = 0;
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= m; j++) {
+                    if (board[i][j]) {
+                        avg += board[i][j];
+                        cnt++;
+                    }
+                }
+            }
+            avg /= cnt;
+        }
+
+        if (avg) {
+            for (int i = 1; i <= n; i++) 
+                for (int j = 1; j <= m; j++)
+                    if (board[i][j]) {
+                        if (board[i][j] > avg) board[i][j] -= 1;
+                        else if (board[i][j] < avg) board[i][j] += 1;
+                    }
+        } 
     }
 
     for (int i = 1; i <= n; i++) 
-        for (int j = 1; j <= m; j++)
+        for (int j = 1; j <= m; j++) 
             if (board[i][j])
                 answer += board[i][j];
 
