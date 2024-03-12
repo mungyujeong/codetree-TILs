@@ -61,7 +61,7 @@ void bfs(int cx, int cy) {
 
     if (cnt != 0) {
         board[cx][cy] = 0;
-        changed = false;
+        changed = true;
     }
 }
 
@@ -73,13 +73,13 @@ int main() {
         for (int j = 1; j <= m; j++)
             cin >> board[i][j];
     
-    for (int i = 0; i < q; i++) {
+    while (q--) {
         int x, d, k;
         cin >> x >> d >> k;
-        for (int j = x; j <= n; j+=x) 
-            rotate(j, d, k);
+        for (int i = x; i <= n; i+=x) 
+            rotate(i, d, k);
 
-        changed = true;
+        changed = false;
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
