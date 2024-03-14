@@ -14,15 +14,6 @@ vector<vector<int>> v[3] = {
     {1, 0}},
 };
 
-void Print() {
-    cout << "===========\n";
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 6; j++) 
-            cout << blue[i][j];
-        cout << endl;
-    }
-}
-
 bool IsGreenValid() {
     for (int i = 0; i < 6; i++)
         for (int j = 0; j < 4; j++)
@@ -103,8 +94,6 @@ void Green(int type, int col) {
             backup[i][j] = green[i][j];
 
     for (int row = 0; row < 6; row++) {
-
-        // Print();
         // 겹치면 무효       
         if (GravityGreen(row, col, block) && IsGreenValid()) {
             idx = row;
@@ -127,6 +116,7 @@ void Green(int type, int col) {
         if (CheckRow(row)) {
             answer++;
             DeleteRow(row);
+            row++;
         }
     
     // 연한 곳(row 0 ~ 1)에 값이 있을 경우 맨 아래 삭제
@@ -152,7 +142,7 @@ void Blue(int type, int row) {
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 6; j++)
             backup[i][j] = blue[i][j];
-    // Print();
+
     for (int col = 0; col < 6; col++) {
         // 겹치면 무효       
         if (GravityBlue(row, col, block) && IsBlueValid()) {
@@ -176,6 +166,7 @@ void Blue(int type, int row) {
         if (CheckCol(col)) {
             answer++;
             DeleteCol(col);
+            col++;
         }
     
     // 연한 곳(row 0 ~ 1)에 값이 있을 경우 맨 아래 삭제
