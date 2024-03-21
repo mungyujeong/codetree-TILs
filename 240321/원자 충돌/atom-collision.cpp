@@ -36,16 +36,17 @@ void Move(int x, int y) {
 
 void Plus(int x, int y) {
     vector<tuple<int, int, int>> tmp = board[x][y];
+    vector<int> dir;
     int total_mass = 0;
     int total_speed = 0;
-    bool is_cross = false;
+    bool is_same = true;
     
     for (auto atom : tmp) {
         int mass, s, d;
         tie(mass, s, d) = atom;
         total_mass += mass;
         total_speed += s;
-        if (d % 2 == 1) is_cross = true;
+        dir.push_back(d % 2);
     }
 
     board[x][y].clear();
@@ -54,8 +55,12 @@ void Plus(int x, int y) {
     total_speed /= (int)tmp.size();
 
     if (total_mass == 0) return;
-
-    if (!is_cross) 
+    int prev = dir[0];
+    for (int i = 1; i < dir.size(); i++) 
+        if (prev != dir[i]) 
+            is_same = false;
+    
+    if (is_same) 
         for (int nd = 0; nd < 8; nd += 2)
             board[x][y].push_back({total_mass, total_speed, nd});
     else 
@@ -72,7 +77,7 @@ void Print() {
                 tie(a, b, c) = atom;
                 cout << "(" << i << ' ' << j << ' ' << a << ' ' << b << ' ' << c << ")";
             }
-            cout << "||";
+            cout << "|";
         }
         cout << endl;
     }
@@ -90,6 +95,7 @@ int main() {
 
     while (k--) {
         Initialize();
+
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                 if (!board[i][j].empty()) 
@@ -103,9 +109,9 @@ int main() {
             for (int j = 0; j < n; j++)
                 if (board[i][j].size() > 1) 
                     Plus(i, j);
-        // Print();
     }
 
+        // Print();
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             if (!board[i][j].empty())
