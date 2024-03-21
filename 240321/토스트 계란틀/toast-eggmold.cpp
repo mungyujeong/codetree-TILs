@@ -63,12 +63,12 @@ void BFS(int x, int y, int idx) {
             if (!InRange(nx, ny)) continue;
             if (visited[nx][ny]) continue;
             if (group[nx][ny]) continue;
-            visited[nx][ny] = 1;
             int diff = abs(board[nx][ny] - board[x][y]);
             if (L <= diff && diff <= R) {
                 group[nx][ny] = idx;
                 Q.push({nx, ny});
                 total += board[nx][ny];
+                visited[nx][ny] = 1;
                 cnt++;
             }
         }
