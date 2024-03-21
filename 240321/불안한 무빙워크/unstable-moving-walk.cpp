@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define MAX_N 100
+#define MAX_N 200
 
 using namespace std;
 
