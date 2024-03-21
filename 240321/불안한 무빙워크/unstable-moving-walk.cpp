@@ -64,7 +64,7 @@ int main() {
         Move();
         Add();
 
-        if (Check() == k) break;
+        if (Check() >= k) break;
     }
 
     cout << answer;
