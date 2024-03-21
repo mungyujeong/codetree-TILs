@@ -48,10 +48,12 @@ void Initialize() {
 void BFS(int x, int y, int idx) {
     queue<pair<int, int>> Q;
     // int visited[MAX_N][MAX_N] = {};
+    vector<pair<int, int>> v;
 
     int total = board[x][y];
     int cnt = 1;
     Q.push({x, y});
+    v.push_back({x, y});
     group[x][y] = idx;
     // visited[x][y] = 1;
 
@@ -68,16 +70,17 @@ void BFS(int x, int y, int idx) {
                 group[nx][ny] = idx;
                 Q.push({nx, ny});
                 total += board[nx][ny];
+                v.push_back({nx, ny});
                 // visited[nx][ny] = 1;
                 cnt++;
             }
         }
     }
     
-    for (int i = 0; i < n; i++) 
-        for (int j = 0; j < n; j++)
-            if (group[i][j] == idx)
-                board[i][j] = total / cnt;
+    for (auto p : v) {
+        tie(x, y) = p;
+        board[x][y] = total / cnt;
+    }
 }
 
 void Simulate() {
