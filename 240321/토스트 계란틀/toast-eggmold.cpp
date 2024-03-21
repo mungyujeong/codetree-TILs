@@ -47,13 +47,13 @@ void Initialize() {
 
 void BFS(int x, int y, int idx) {
     queue<pair<int, int>> Q;
-    int visited[MAX_N][MAX_N] = {};
+    // int visited[MAX_N][MAX_N] = {};
 
     int total = board[x][y];
     int cnt = 1;
     Q.push({x, y});
     group[x][y] = idx;
-    visited[x][y] = 1;
+    // visited[x][y] = 1;
 
     while (!Q.empty()) {
         tie(x, y) = Q.front(); Q.pop();
@@ -61,14 +61,14 @@ void BFS(int x, int y, int idx) {
             int nx = x + dx[d];
             int ny = y + dy[d];
             if (!InRange(nx, ny)) continue;
-            if (visited[nx][ny]) continue;
+            // if (visited[nx][ny]) continue;
             if (group[nx][ny]) continue;
             int diff = abs(board[nx][ny] - board[x][y]);
             if (L <= diff && diff <= R) {
                 group[nx][ny] = idx;
                 Q.push({nx, ny});
                 total += board[nx][ny];
-                visited[nx][ny] = 1;
+                // visited[nx][ny] = 1;
                 cnt++;
             }
         }
@@ -98,8 +98,8 @@ int main() {
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             cin >> board[i][j];
-    
-    while (true) {
+    int tmp = 2000;
+    while (tmp--) {
         // Print();
         if (Possible()){
             Simulate();
