@@ -4,8 +4,6 @@
 #include <tuple>
 
 #define MAX_N 20
-#define ROCK -1
-#define DELETED -2
 
 using namespace std;
 
@@ -55,6 +53,7 @@ void Remove(tuple<int, int, int> result) {
     int val, cur_x, cur_y, x, y;
     tie(val, cur_x, cur_y) = result;
     cur_x = -cur_x; cur_y = -cur_y;
+
     board[cur_x][cur_y] = 0;
     year[cur_x][cur_y] = c;
 
@@ -69,9 +68,13 @@ void Remove(tuple<int, int, int> result) {
             int nx = x + dx[d] * dist;
             int ny = y + dy[d] * dist;
             if (!InRange(nx, ny)) break;
+            if (board[nx][ny] <= 0) {
+                year[nx][ny] = c;
+                break;
+            };
             board[nx][ny] = 0;
             year[nx][ny] = c;
-            if (board[nx][ny] <= 0) continue;
+            // if (board[nx][ny] == 0) break;
         }
     }
 }
@@ -80,7 +83,7 @@ void Delete() {
     auto result = FindMaximumPosition();
     int a, b, c;
     tie(a, b, c) = result;
-    cout << a << ' ' << b << ' ' << c << endl;
+    // cout << a << ' ' << b << ' ' << c << endl;
     Remove(result);
 }
 
@@ -102,8 +105,7 @@ void Copy() {
                     int ny = j + dy[d];
                     if (!InRange(nx, ny)) continue;
                     if (year[nx][ny]) continue;
-                    if (board[nx][ny] != 0) continue;
-                    cnt++;
+                    if (board[nx][ny] == 0) cnt++;
                 }
 
                 for (int d = 0; d < 4; d++) {
@@ -111,8 +113,8 @@ void Copy() {
                     int ny = j + dy[d];
                     if (!InRange(nx, ny)) continue;
                     if (year[nx][ny]) continue;
-                    if (board[nx][ny] != 0) continue;
-                    nxt_board[nx][ny] += board[i][j] / cnt;
+                    if (board[nx][ny] == 0) 
+                        nxt_board[nx][ny] += board[i][j] / cnt;
                 }
             }
         }
