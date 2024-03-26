@@ -64,10 +64,16 @@ void Catch() {
 
     cur_x += dx[cur_d];
     cur_y += dy[cur_d];
-    
+
     if (cur_x == 0 && cur_y == 0)
         is_front = false;
 
+    if (is_front)
+        cur_d = dir[cur_x][cur_y];
+    else
+        cur_d = rev_dir[cur_x][cur_y];
+
+    // cout << cur_x << ' ' << cur_y << ' ' << cur_d <<  endl;
     for (int i = 0; i < 3; i++) {
         int nx = cur_x + dx[cur_d] * i;
         int ny = cur_y + dy[cur_d] * i;
@@ -135,10 +141,6 @@ int main() {
         Catch();
     }
 
-    // Move();
-    // Catch();
-
-    // Print();
     cout << answer;
     return 0;
 }
