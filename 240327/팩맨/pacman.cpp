@@ -77,7 +77,11 @@ int Eat(vector<int> dir) {
     for (auto d : dir) {
         x += dx[d];
         y += dy[d];
-        if (!InRange(x, y)) continue;
+        if (!InRange(x, y)) {
+            x -= dx[d];
+            y -= dy[d];
+            continue;
+        }
         if (visited[x][y]) continue;
         cnt += board[x][y].size();
         visited[x][y] = true;
