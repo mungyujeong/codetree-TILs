@@ -30,21 +30,19 @@ void Move(int x, int y, int d) {
     int dy[] = {0, -1, -1, -1, 0, 1, 1, 1};
 
     int od = d;
-    int cnt = 0;
 
     while (true) {
         int nx = x + dx[d];
         int ny = y + dy[d];
         if (!InRange(nx, ny) || dead[nx][ny] || (nx == px && ny == py)) {
             d = (d + 1) % 8;
-            cnt++;
         }
         else {
             tmp[nx][ny].push_back(d);
             break;
         }
 
-        if (cnt == 8) {
+        if (od == d) {
             tmp[x][y].push_back(od);
             break;
         }
@@ -115,7 +113,11 @@ void PackmanMove() {
     for (auto d : dir) {
         px += dx[d];
         py += dy[d];
-        if (!InRange(px, py)) continue;
+        if (!InRange(px, py)) {
+            px -= dx[d];
+            py -= dy[d];
+            continue;
+        }
         if (board[px][py].empty()) continue;
         board[px][py].clear();
         dead[px][py] = 3;
