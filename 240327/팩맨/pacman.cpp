@@ -77,11 +77,7 @@ int Eat(vector<int> dir) {
     for (auto d : dir) {
         x += dx[d];
         y += dy[d];
-        if (!InRange(x, y)) {
-            x -= dx[d];
-            y -= dy[d];
-            continue;
-        }
+        if (!InRange(x, y)) return -1;
         if (visited[x][y]) continue;
         cnt += board[x][y].size();
         visited[x][y] = true;
@@ -117,11 +113,6 @@ void PackmanMove() {
     for (auto d : dir) {
         px += dx[d];
         py += dy[d];
-        if (!InRange(px, py)) {
-            px -= dx[d];
-            py -= dy[d];
-            continue;
-        }
         if (board[px][py].empty()) continue;
         board[px][py].clear();
         dead[px][py] = 3;
