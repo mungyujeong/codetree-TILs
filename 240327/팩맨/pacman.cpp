@@ -118,7 +118,7 @@ void PackmanMove() {
         if (!InRange(px, py)) continue;
         if (board[px][py].empty()) continue;
         board[px][py].clear();
-        dead[px][py] = 2;
+        dead[px][py] = 3;
     }
 }
 
